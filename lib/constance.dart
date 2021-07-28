@@ -9,7 +9,3 @@ const fifthColor = Color(0xffa39176);
 const defaultPadding = 8;
 const defaultMargin = 8;
 const defaultSpace = 20;
-
-const String linkedInPathUrl =
-    'https://www.linkedin.com/in/taloengrat-poomchaiya-5bba86204/?originalSubdomain=th';
-const String gitHubUrlPath = 'https://github.com/Taloengrat?tab=repositories';

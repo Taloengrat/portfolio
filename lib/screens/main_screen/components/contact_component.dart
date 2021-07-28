@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taloengrat_cv/screens/main_screen/components/sidebar_contact.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 
 import '../../../constance.dart';
@@ -14,7 +15,7 @@ class ContactComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: size.height * 0.5,
+      height: size.height * 0.3,
       constraints: BoxConstraints(
         maxHeight: size.height,
         maxWidth: double.infinity,
@@ -22,9 +23,10 @@ class ContactComponent extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            'footer_background.jpg',
+            'head_background.jpg',
           ),
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
+          alignment: Alignment.center,
         ),
       ),
       margin: EdgeInsets.symmetric(vertical: defaultMargin * 2),
@@ -37,7 +39,14 @@ class ContactComponent extends StatelessWidget {
               topicName: 'Contact',
               differenceStyle: true,
             ),
-          )
+          ),
+          Container(
+            height: 50,
+            width: 200,
+            child: SideBarContactComponent(
+              axizType: AXIZ_TYPE.ROW,
+            ),
+          ),
         ],
       ),
     );

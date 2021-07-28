@@ -30,9 +30,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
   Widget build(BuildContext context) {
     return Container(
       width: widget.size.width,
-      height: widget.size.width >= 570
-          ? widget.size.height * 0.7
-          : widget.size.height * 0.5,
+      height: widget.size.height,
       child: Stack(
         children: [
           Align(
@@ -114,15 +112,16 @@ class _HeaderComponentState extends State<HeaderComponent> {
               width: widget.size.width * (widget.size.width >= 830 ? 0.5 : 0.9),
               height: 70,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(0.0, 1.0),
-                      blurRadius: 6.0,
-                    ),
-                  ]),
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    offset: Offset(0.0, 1.0),
+                    blurRadius: 6.0,
+                  ),
+                ],
+              ),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 reverse: true,
@@ -145,7 +144,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                       listTopicPosition: widget.listTopicPosition,
                     ),
                     MenuWidget(
-                      message: 'Activities',
+                      message: 'Extracurricular\nactivities',
                       color: thridColor,
                       index: 2,
                       scrollController: widget.scrollController,
@@ -196,7 +195,7 @@ class MenuWidget extends StatefulWidget {
 }
 
 class _MenuWidgetState extends State<MenuWidget> {
-  String message = '';
+  // String message = '';
   _moveTo(int index) {
     if (widget.listTopicPosition.isEmpty) return;
 
@@ -208,21 +207,21 @@ class _MenuWidgetState extends State<MenuWidget> {
   }
 
   _scrollListener() {
-    log(widget.scrollController.offset.toString(), name: 'scroll value');
+    // log(widget.scrollController.offset.toString(), name: 'scroll value');
     if (widget.scrollController.offset >=
             widget.scrollController.position.maxScrollExtent &&
         !widget.scrollController.position.outOfRange) {
       setState(() {
-        message = "reach the bottom";
-        log(message, name: 'log: HeaderComponent scroll listener');
+        // message = "reach the bottom";
+        // log(message, name: 'log: HeaderComponent scroll listener');
       });
     }
     if (widget.scrollController.offset <=
             widget.scrollController.position.minScrollExtent &&
         !widget.scrollController.position.outOfRange) {
       setState(() {
-        message = "reach the top";
-        log(message, name: 'scroll listener');
+        // message = "reach the top";
+        // log(message, name: 'scroll listener');
       });
     }
 
@@ -270,6 +269,7 @@ class _MenuWidgetState extends State<MenuWidget> {
           fit: BoxFit.contain,
           child: Text(
             widget.message,
+            textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
               textStyle: TextStyle(
                 fontSize: isHover ? 18 : 16,

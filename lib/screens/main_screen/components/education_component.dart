@@ -18,12 +18,24 @@ class EducationComponent extends StatelessWidget {
         maxWidth: size.width * 0.8,
       ),
       margin: EdgeInsets.symmetric(vertical: defaultMargin * 2),
-      child: Column(
+      child: Wrap(
+        alignment: WrapAlignment.center,
         children: [
-          TopicNameWidget(
-            color: fourthColor,
-            topicName: 'Education',
-          )
+          Row(
+            children: [
+              TopicNameWidget(
+                color: fourthColor,
+                topicName: 'Education',
+              ),
+              Expanded(
+                child: Divider(
+                  height: 25,
+                  thickness: 5,
+                  color: Colors.blueGrey[600],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

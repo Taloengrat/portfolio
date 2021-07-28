@@ -1,16 +1,19 @@
 import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:taloengrat_cv/models/icon_navigate_model.dart';
 
 class IconNavigate extends StatelessWidget {
-  final String? path;
-  final ALTERNATIVE_TYPE? alternativeType;
-  final Widget child;
+  // final String? path;
+  // final ALTERNATIVE_TYPE? alternativeType;
+  // final Widget child;
+  final int index;
   const IconNavigate({
     Key? key,
-    required this.path,
-    required this.child,
-    this.alternativeType,
+    required this.index,
+    // required this.path,
+    // required this.child,
+    // this.alternativeType,
   }) : super(key: key);
 
   @override
@@ -20,43 +23,46 @@ class IconNavigate extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return InkWell(
       key: key,
-      onTap: () => path!.isNotEmpty
-          ? html.window.open(path!, "_blank")
+      onTap: () => iconNavigate[index].url.isNotEmpty
+          ? html.window.open(iconNavigate[index].url, "_blank")
           : showDialog(
               context: context,
               builder: (_) => AlertDialog(
-                title: alternativeType == ALTERNATIVE_TYPE.LINE
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Line id : armtp1997',
-                            textAlign: TextAlign.center,
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.copy),
-                            onPressed: () {
-                              Clipboard.setData(
-                                ClipboardData(text: 'armtp1997'),
-                              );
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'copied',
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                      )
-                    : null,
+                title:
+                    iconNavigate[index].alternativeType == ALTERNATIVE_TYPE.LINE
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Line id : armtp1997',
+                                textAlign: TextAlign.center,
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.copy),
+                                onPressed: () {
+                                  Clipboard.setData(
+                                    ClipboardData(text: 'armtp1997'),
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'copied',
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          )
+                        : null,
                 content: Container(
-                  height: alternativeType == ALTERNATIVE_TYPE.EMAIL
+                  height: iconNavigate[index].alternativeType ==
+                          ALTERNATIVE_TYPE.EMAIL
                       ? 100
                       : size.height * 0.5,
                   width: size.height * 0.5,
-                  decoration: alternativeType == ALTERNATIVE_TYPE.LINE
+                  decoration: iconNavigate[index].alternativeType ==
+                          ALTERNATIVE_TYPE.LINE
                       ? BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
@@ -70,7 +76,8 @@ class IconNavigate extends StatelessWidget {
                             8,
                           ),
                         ),
-                  child: alternativeType == ALTERNATIVE_TYPE.LINE
+                  child: iconNavigate[index].alternativeType ==
+                          ALTERNATIVE_TYPE.LINE
                       ? null
                       : Center(
                           child: Row(
@@ -105,7 +112,10 @@ class IconNavigate extends StatelessWidget {
                 ),
               ),
             ),
-      child: child,
+      child: Image.asset(
+        iconNavigate[index].pathImage,
+        width: 32,
+      ),
     );
   }
 }

@@ -1,0 +1,3 @@
+class MyStoryModel {
+  String? detail;
+}

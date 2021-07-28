@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           headline3: GoogleFonts.poppins(
             textStyle: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Colors.amber,
             ),
           ),
           headline4: GoogleFonts.poppins(

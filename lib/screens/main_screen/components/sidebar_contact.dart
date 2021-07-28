@@ -1,59 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:taloengrat_cv/constance.dart';
+import 'package:taloengrat_cv/models/icon_navigate_model.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/icon_newtab_widget.dart';
 
 class SideBarContactComponent extends StatelessWidget {
-  const SideBarContactComponent({Key? key}) : super(key: key);
+  final AXIZ_TYPE axizType;
+  const SideBarContactComponent({
+    Key? key,
+    required this.axizType,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        IconNavigate(
-          child: Tooltip(
-            message: 'Taloengrat Poomchaiya',
-            child: Image.asset(
-              'images/github.png',
-              width: 32,
+    return axizType == AXIZ_TYPE.COLUMN
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: List.generate(
+              iconNavigate.length,
+              (index) => IconNavigate(index: index),
             ),
-          ),
-          path: gitHubUrlPath,
-        ),
-        IconNavigate(
-          child: Tooltip(
-            message: 'Taloengrat Poomchaiya',
-            child: Image.asset(
-              'images/linkedin.png',
-              width: 32,
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: List.generate(
+              iconNavigate.length,
+              (index) => IconNavigate(index: index),
             ),
-          ),
-          path: linkedInPathUrl,
-        ),
-        IconNavigate(
-          child: Tooltip(
-            message: 'Line id : armtp1997',
-            child: Image.asset(
-              'images/line-logo.png',
-              width: 32,
-            ),
-          ),
-          path: '',
-          alternativeType: ALTERNATIVE_TYPE.LINE,
-        ),
-        IconNavigate(
-          child: Tooltip(
-            message: 'tp.sourcecode@gmail.com',
-            child: Image.asset(
-              'images/email.png',
-              width: 32,
-            ),
-          ),
-          path: '',
-          alternativeType: ALTERNATIVE_TYPE.EMAIL,
-        ),
-      ],
-    );
+          );
   }
+}
+
+enum AXIZ_TYPE {
+  COLUMN,
+  ROW,
 }
