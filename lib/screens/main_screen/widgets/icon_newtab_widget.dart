@@ -4,12 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:taloengrat_cv/models/icon_navigate_model.dart';
 
 class IconNavigate extends StatelessWidget {
+  final ALTERNATIVE_COLOR alternativeColor;
   // final String? path;
   // final ALTERNATIVE_TYPE? alternativeType;
   // final Widget child;
   final int index;
   const IconNavigate({
     Key? key,
+    required this.alternativeColor,
     required this.index,
     // required this.path,
     // required this.child,
@@ -113,7 +115,9 @@ class IconNavigate extends StatelessWidget {
               ),
             ),
       child: Image.asset(
-        iconNavigate[index].pathImage,
+        alternativeColor == ALTERNATIVE_COLOR.BLACK
+            ? iconNavigate[index].pathImageB
+            : iconNavigate[index].pathImageW,
         width: 32,
       ),
     );
@@ -123,4 +127,9 @@ class IconNavigate extends StatelessWidget {
 enum ALTERNATIVE_TYPE {
   EMAIL,
   LINE,
+}
+
+enum ALTERNATIVE_COLOR {
+  BLACK,
+  WHITE,
 }

@@ -17,7 +17,10 @@ class SideBarContactComponent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(
               iconNavigate.length,
-              (index) => IconNavigate(index: index),
+              (index) => IconNavigate(
+                index: index,
+                alternativeColor: ALTERNATIVE_COLOR.BLACK,
+              ),
             ),
           )
         : Row(
@@ -25,7 +28,10 @@ class SideBarContactComponent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: List.generate(
               iconNavigate.length,
-              (index) => IconNavigate(index: index),
+              (index) => IconNavigate(
+                index: index,
+                alternativeColor: ALTERNATIVE_COLOR.WHITE,
+              ),
             ),
           );
   }

@@ -21,13 +21,14 @@ class ContactComponent extends StatelessWidget {
         maxWidth: double.infinity,
       ),
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-            'head_background.jpg',
-          ),
-          fit: BoxFit.cover,
-          alignment: Alignment.center,
-        ),
+        color: Colors.black87,
+        // image: DecorationImage(
+        //   image: AssetImage(
+        //     'head_background.jpg',
+        //   ),
+        //   fit: BoxFit.cover,
+        //   alignment: Alignment.center,
+        // ),
       ),
       margin: EdgeInsets.symmetric(vertical: defaultMargin * 2),
       child: Column(
