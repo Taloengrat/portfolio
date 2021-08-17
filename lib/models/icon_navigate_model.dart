@@ -43,4 +43,10 @@ List<IconNavigateModel> iconNavigate = [
     url: '',
     alternativeType: ALTERNATIVE_TYPE.EMAIL,
   ),
+  IconNavigateModel(
+    tooltipMessage: 'tp.sourcecode@gmail.com',
+    pathImageB: 'images/youtube_b.png',
+    pathImageW: 'images/youtube_w.png',
+    url: 'https://www.youtube.com/channel/UCpZbrIT9vATGUYsyuegqeBQ/featured',
+  ),
 ];

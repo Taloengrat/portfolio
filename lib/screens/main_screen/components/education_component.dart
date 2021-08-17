@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:taloengrat_cv/models/education_model.dart';
+import 'package:taloengrat_cv/screens/main_screen/widgets/education_tile_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 
 import '../../../constance.dart';
@@ -35,6 +37,15 @@ class EducationComponent extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          Column(
+            children: educationModelData
+                .map((e) => EducationTileWidget(
+                      path: e.logoPath,
+                      title: '${e.univercity} - ${e.year}',
+                      subTitle: e.department,
+                    ))
+                .toList(),
           ),
         ],
       ),

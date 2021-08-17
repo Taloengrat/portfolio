@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/icon_navigate_model.dart';
+import 'package:taloengrat_cv/providers/sidebar_contact_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/icon_newtab_widget.dart';
 
 class SideBarContactComponent extends StatelessWidget {
@@ -11,15 +13,20 @@ class SideBarContactComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isReachBottom = Provider.of<SidebarProvider>(context).item;
+
     return axizType == AXIZ_TYPE.COLUMN
-        ? Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: List.generate(
-              iconNavigate.length,
-              (index) => IconNavigate(
-                index: index,
-                alternativeColor: ALTERNATIVE_COLOR.BLACK,
+        ? Visibility(
+            visible: !isReachBottom,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: List.generate(
+                iconNavigate.length,
+                (index) => IconNavigate(
+                  index: index,
+                  alternativeColor: ALTERNATIVE_COLOR.BLACK,
+                ),
               ),
             ),
           )

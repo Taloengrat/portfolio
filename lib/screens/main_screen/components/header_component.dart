@@ -4,6 +4,9 @@ import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:taloengrat_cv/providers/sidebar_contact_provider.dart';
+import 'package:taloengrat_cv/screens/main_screen/widgets/language_switch_widget.dart';
 
 import '../../../constance.dart';
 
@@ -169,6 +172,10 @@ class _HeaderComponentState extends State<HeaderComponent> {
               ),
             ),
           ),
+          Align(
+            alignment: Alignment.topRight,
+            child: LanguageSwitchWidget(),
+          ),
         ],
       ),
     );
@@ -195,7 +202,6 @@ class MenuWidget extends StatefulWidget {
 }
 
 class _MenuWidgetState extends State<MenuWidget> {
-  // String message = '';
   _moveTo(int index) {
     if (widget.listTopicPosition.isEmpty) return;
 
@@ -208,21 +214,20 @@ class _MenuWidgetState extends State<MenuWidget> {
 
   _scrollListener() {
     // log(widget.scrollController.offset.toString(), name: 'scroll value');
-    if (widget.scrollController.offset >=
-            widget.scrollController.position.maxScrollExtent &&
-        !widget.scrollController.position.outOfRange) {
-      setState(() {
-        // message = "reach the bottom";
-        // log(message, name: 'log: HeaderComponent scroll listener');
-      });
+    if (widget.scrollController.offset ==
+        widget.scrollController.position.maxScrollExtent) {
+      Provider.of<SidebarProvider>(context, listen: false)
+          .updateReachBottom(true);
+    } else {
+      Provider.of<SidebarProvider>(context, listen: false)
+          .updateReachBottom(false);
     }
+
     if (widget.scrollController.offset <=
             widget.scrollController.position.minScrollExtent &&
         !widget.scrollController.position.outOfRange) {
-      setState(() {
-        // message = "reach the top";
-        // log(message, name: 'scroll listener');
-      });
+      Provider.of<SidebarProvider>(context, listen: false)
+          .updateReachBottom(true);
     }
 
     // if(widget.scrollController.offset >)

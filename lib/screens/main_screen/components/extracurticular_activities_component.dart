@@ -38,7 +38,7 @@ class ExtracurricularActivitiesComponent extends StatelessWidget {
               for (int i = 0; i < 5; i++)
                 ActivitiesCardWidget(
                   path: 'images/activities/extracurricular_1.PNG',
-                  color: Colors.grey,
+                  color: Colors.white,
                   content: 'GCDP RMUTT COMPETITION',
                 )
             ],

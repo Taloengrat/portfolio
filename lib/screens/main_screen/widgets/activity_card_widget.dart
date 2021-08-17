@@ -16,9 +16,9 @@ class ActivitiesCardWidget extends StatelessWidget {
     return Container(
       width: 400,
       height: 300,
-      margin: EdgeInsets.all(8),
+      margin: EdgeInsets.all(5),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(5),
         color: color,
         boxShadow: [
           BoxShadow(
@@ -39,7 +39,6 @@ class ActivitiesCardWidget extends StatelessWidget {
                 margin: EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 4),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Colors.blue,
                   image: DecorationImage(
                     image: AssetImage(path!),
                     fit: BoxFit.cover,

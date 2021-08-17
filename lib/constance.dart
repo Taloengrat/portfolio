@@ -9,3 +9,8 @@ const fifthColor = Color(0xffa39176);
 const defaultPadding = 8;
 const defaultMargin = 8;
 const defaultSpace = 20;
+
+const languageList = [
+  'English',
+  'Thai',
+];

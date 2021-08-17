@@ -14,6 +14,7 @@ class ContactComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: defaultPadding as double),
       width: double.infinity,
       height: size.height * 0.3,
       constraints: BoxConstraints(
@@ -35,10 +36,48 @@ class ContactComponent extends StatelessWidget {
         children: [
           Container(
             width: size.width * 0.8,
-            child: TopicNameWidget(
-              color: fifthColor,
-              topicName: 'Contact',
-              differenceStyle: true,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TopicNameWidget(
+                  color: fifthColor,
+                  topicName: 'Contact',
+                  differenceStyle: true,
+                ),
+                RaisedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.download,
+                  ),
+                  label: Text(
+                    'Download',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                // Container(
+                //   padding: EdgeInsets.all(5),
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(32),
+                //     color: Colors.white,
+                //   ),
+                //   child: Row(
+                //     children: [
+                //       Image.asset(
+                //         'images/icon/download.png',
+                //         width: 32,
+                //       ),
+                //       Text(
+                //         'Download',
+                //         style: TextStyle(
+                //           fontWeight: FontWeight.bold,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+              ],
             ),
           ),
           Container(

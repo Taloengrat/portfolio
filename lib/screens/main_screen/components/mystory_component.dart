@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:taloengrat_cv/models/my_story_model.dart';
+import 'package:taloengrat_cv/providers/language_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 
 import '../../../constance.dart';
@@ -12,6 +16,8 @@ class MyStoryComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = Provider.of<LanguageProvider>(context).item;
+
     return Container(
       constraints: BoxConstraints(
         maxWidth: size.width * 0.8,
@@ -41,7 +47,9 @@ class MyStoryComponent extends StatelessWidget {
             alignment: WrapAlignment.start,
             children: [
               SelectableText(
-                'My name is taloengrat poomchaiya call me arm,  i was born in Nongkai',
+                language == 'English'
+                    ? myStoryModel.enDetail as String
+                    : myStoryModel.thDetail as String,
                 toolbarOptions: ToolbarOptions(
                   copy: true,
                 ),

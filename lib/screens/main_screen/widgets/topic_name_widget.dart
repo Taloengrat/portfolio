@@ -22,11 +22,11 @@ class TopicNameWidget extends StatelessWidget {
           height: 30,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            // color: primaryColor,
-            border: Border.all(
-              color: color,
-              width: 5,
-            ),
+            color: Colors.black87,
+            // border: Border.all(
+            //   color: color,
+            //   width: 5,
+            // ),
           ),
         ),
         SizedBox(
