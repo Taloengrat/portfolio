@@ -14,4 +14,6 @@ List<ExtracurricularATVTModel> extraccurricularATVModel = [
   ExtracurricularATVTModel(),
   ExtracurricularATVTModel(),
   ExtracurricularATVTModel(),
+  ExtracurricularATVTModel(),
+  ExtracurricularATVTModel(),
 ];
