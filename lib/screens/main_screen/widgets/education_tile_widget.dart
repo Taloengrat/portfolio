@@ -41,6 +41,7 @@ class EducationTileWidget extends StatelessWidget {
           subTitle,
           style: TextStyle(
             fontSize: 18,
+            color: Colors.blueGrey,
           ),
         ),
       ),

@@ -25,7 +25,7 @@ class _LanguageSwitchWidgetState extends State<LanguageSwitchWidget> {
               onChanged: (String? newValue) {
                 setState(() {
                   Provider.of<LanguageProvider>(context, listen: false)
-                      .updateLAnguageType(newValue!);
+                      .updateLanguageType(newValue!);
                 });
               },
               items: languageList

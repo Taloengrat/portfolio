@@ -16,7 +16,7 @@ class ContactComponent extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: defaultPadding as double),
       width: double.infinity,
-      height: size.height * 0.3,
+      height: size.height * 0.2,
       constraints: BoxConstraints(
         maxHeight: size.height,
         maxWidth: double.infinity,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/constance.dart';
+import 'package:taloengrat_cv/models/extracurricular_atvt_model.dart';
+import 'package:taloengrat_cv/providers/language_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/activity_card_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 
@@ -12,6 +15,8 @@ class ExtracurricularActivitiesComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = Provider.of<LanguageProvider>(context).item;
+
     return Container(
       constraints: BoxConstraints(maxWidth: size.width * 0.8),
       child: Wrap(
@@ -33,16 +38,15 @@ class ExtracurricularActivitiesComponent extends StatelessWidget {
             ],
           ),
           Wrap(
-            alignment: WrapAlignment.center,
-            children: [
-              for (int i = 0; i < 5; i++)
-                ActivitiesCardWidget(
-                  path: 'images/activities/extracurricular_1.PNG',
-                  color: Colors.white,
-                  content: 'GCDP RMUTT COMPETITION',
-                )
-            ],
-          ),
+              alignment: WrapAlignment.center,
+              children: extraccurricularATVModel
+                  .map((e) => ActivitiesCardWidget(
+                        path: e.pathImage!,
+                        content:
+                            language == 'English' ? e.enContain! : e.thContain!,
+                        activityAxis: e.activityAxis,
+                      ))
+                  .toList()),
         ],
       ),
     );

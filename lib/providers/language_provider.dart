@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 
 class LanguageProvider with ChangeNotifier {
@@ -7,9 +9,15 @@ class LanguageProvider with ChangeNotifier {
     return languageType;
   }
 
-  updateLAnguageType(String value) {
-    languageType = value;
-    notifyListeners();
+  updateLanguageType(String value) {
+    if (languageType != value) {
+      languageType = value;
+      notifyListeners();
+      log(
+        "updateLanguageType",
+        name: 'LanguageProvider',
+      );
+    }
   }
 }
 
