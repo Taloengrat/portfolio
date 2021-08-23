@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:taloengrat_cv/models/about_me_model.dart';
+import 'package:taloengrat_cv/models/other_model.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
+import 'package:taloengrat_cv/screens/main_screen/widgets/other_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 
 import '../../../constance.dart';
 
-class MyStoryComponent extends StatelessWidget {
+class OtherComponent extends StatefulWidget {
   final Size size;
-  final TopicModel topic;
+  final TopicModel topicModel;
   final bool isEnglish;
-  const MyStoryComponent({
+  OtherComponent({
     Key? key,
     required this.size,
-    required this.topic,
+    required this.topicModel,
     required this.isEnglish,
   }) : super(key: key);
 
   @override
+  _OtherComponentState createState() => _OtherComponentState();
+}
+
+class _OtherComponentState extends State<OtherComponent> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxWidth: size.width * 0.8,
+        maxWidth: widget.size.width * 0.8,
       ),
       margin: EdgeInsets.symmetric(
         vertical: defaultMargin * 2,
@@ -32,7 +38,9 @@ class MyStoryComponent extends StatelessWidget {
             children: [
               TopicNameWidget(
                 color: primaryColor,
-                topicName: isEnglish ? topic.enTitle : topic.thTitle,
+                topicName: widget.isEnglish
+                    ? widget.topicModel.enTitle
+                    : widget.topicModel.thTitle,
               ),
               Expanded(
                 child: Divider(
@@ -44,20 +52,15 @@ class MyStoryComponent extends StatelessWidget {
             ],
           ),
           Wrap(
-            alignment: WrapAlignment.start,
-            children: [
-              SelectableText(
-                isEnglish
-                    ? myStoryModel.enDetail as String
-                    : myStoryModel.thDetail as String,
-                toolbarOptions: ToolbarOptions(
-                  copy: true,
-                ),
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            ],
+            children: otherModel
+                .map(
+                  (e) => OtherWidget(
+                    otherModel: e,
+                    isEnglish: widget.isEnglish,
+                  ),
+                )
+                .toList(),
           ),
-          // Spacer(),
         ],
       ),
     );

@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:taloengrat_cv/models/my_skill_model.dart';
-import 'package:taloengrat_cv/screens/main_screen/widgets/myskill_card_widget.dart';
+import 'package:taloengrat_cv/models/topic_model.dart';
+import 'package:taloengrat_cv/screens/main_screen/widgets/skill_card_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 
 import '../../../constance.dart';
 
 class MySkillComponent extends StatelessWidget {
   final Size size;
+  final TopicModel topic;
+  final bool isEnglish;
 
   const MySkillComponent({
     Key? key,
     required this.size,
+    required this.topic,
+    required this.isEnglish,
   }) : super(key: key);
 
   @override
@@ -28,8 +33,8 @@ class MySkillComponent extends StatelessWidget {
           Row(
             children: [
               TopicNameWidget(
-                color: secondColor,
-                topicName: 'My Skills',
+                color: primaryColor,
+                topicName: isEnglish ? topic.enTitle : topic.thTitle,
               ),
               Expanded(
                 child: Divider(
@@ -43,15 +48,50 @@ class MySkillComponent extends StatelessWidget {
           SizedBox(
             height: 50,
           ),
-          Wrap(
-            alignment: WrapAlignment.center,
-            children: listMyskill.map((e) {
-              return MyskillCardWidget(
-                title: e.title,
-                detail: e.detail,
-                pathImageIcon: e.path,
-              );
-            }).toList(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            // alignment: WrapAlignment.center,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Column(
+                  children: [
+                    ...listMyskill.map((e) {
+                      if (e.skilType == SKILL_TYPE.LANGUAGE) {
+                        return MyskillCardWidget(
+                          title: e.title,
+                          level: e.skillLevel,
+                          detail: e.detail,
+                          pathImageIcon: e.path,
+                        );
+                      } else {
+                        return Container();
+                      }
+                    }).toList()
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  children: [
+                    ...listMyskill.map((e) {
+                      if (e.skilType == SKILL_TYPE.TOOL) {
+                        return MyskillCardWidget(
+                          title: e.title,
+                          level: e.skillLevel,
+                          detail: e.detail,
+                          pathImageIcon: e.path,
+                        );
+                      } else {
+                        return Container();
+                      }
+                    }).toList()
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),

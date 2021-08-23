@@ -22,7 +22,7 @@ class TopicNameWidget extends StatelessWidget {
           height: 30,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.black87,
+            color: color,
             // border: Border.all(
             //   color: color,
             //   width: 5,

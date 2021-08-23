@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taloengrat_cv/constance.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 
 class EducationTileWidget extends StatelessWidget {
@@ -16,7 +17,6 @@ class EducationTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 8),
-      padding: EdgeInsets.symmetric(horizontal: 32),
       child: ListTile(
         leading: Container(
           padding: EdgeInsets.all(5),
@@ -25,25 +25,13 @@ class EducationTileWidget extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              color: Colors.black54,
+              color: thridColor,
               width: 5,
             ),
           ),
         ),
-        title: Text(
-          title,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 24,
-          ),
-        ),
-        subtitle: Text(
-          subTitle,
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.blueGrey,
-          ),
-        ),
+        title: Text(title, style: Theme.of(context).textTheme.bodyText1),
+        subtitle: Text(subTitle, style: Theme.of(context).textTheme.bodyText2),
       ),
     );
   }

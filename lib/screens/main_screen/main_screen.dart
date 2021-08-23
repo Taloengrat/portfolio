@@ -1,19 +1,17 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/constance.dart';
+import 'package:taloengrat_cv/models/topic_model.dart';
 import 'package:taloengrat_cv/providers/language_provider.dart';
-import 'package:taloengrat_cv/providers/sidebar_contact_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/extracurticular_activities_component.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/contact_component.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/education_component.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/myskill_component.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/mystory_component.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/sidebar_contact.dart';
-import 'package:taloengrat_cv/screens/main_screen/widgets/language_switch_widget.dart';
 
 import 'components/header_component.dart';
+import 'components/other_component.dart';
 
 class MainScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -30,6 +28,7 @@ class _MainScreenState extends State<MainScreen> {
   GlobalKey _keyActivities = GlobalKey();
   GlobalKey _keyEducation = GlobalKey();
   GlobalKey _keyContact = GlobalKey();
+  GlobalKey _keyOther = GlobalKey();
 
   List<double> _listTopicPosition = [];
   @override
@@ -78,6 +77,13 @@ class _MainScreenState extends State<MainScreen> {
     _listTopicPosition.add(position.dy);
   }
 
+  _getOther() {
+    final RenderBox? otherBox =
+        _keyOther.currentContext!.findRenderObject() as RenderBox;
+    final position = otherBox!.localToGlobal(Offset.zero);
+    _listTopicPosition.add(position.dy);
+  }
+
   _getContact() {
     final RenderBox? activityBox =
         _keyContact.currentContext!.findRenderObject() as RenderBox;
@@ -90,72 +96,81 @@ class _MainScreenState extends State<MainScreen> {
     _getMySkillPosition();
     _getActivity();
     _getEducation();
+    _getOther();
     _getContact();
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final language = Provider.of<LanguageProvider>(context).item;
+    final isEnglish = language == 'English';
     return Scaffold(
       backgroundColor: Colors.white,
-      body: MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(
-            value: SidebarProvider(),
-          ),
-          ChangeNotifierProvider.value(
-            value: LanguageProvider(),
-          )
-        ],
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                children: [
-                  HeaderComponent(
-                    size: size,
-                    scrollController: _scrollController,
-                    listTopicPosition: _listTopicPosition,
-                  ),
-                  SizedBox(
-                    height: defaultSpace * 2,
-                  ),
-                  MyStoryComponent(
-                    key: _keyMyStory,
-                    size: size,
-                  ),
-                  MySkillComponent(
-                    key: _keyMySkill,
-                    size: size,
-                  ),
-                  ExtracurricularActivitiesComponent(
-                    key: _keyActivities,
-                    size: size,
-                  ),
-                  EducationComponent(
-                    key: _keyEducation,
-                    size: size,
-                  ),
-                  ContactComponent(
-                    key: _keyContact,
-                    size: size,
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                width: 50,
-                height: 200,
-                child: SideBarContactComponent(
-                  axizType: AXIZ_TYPE.COLUMN,
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              children: [
+                HeaderComponent(
+                  size: size,
+                  scrollController: _scrollController,
+                  listTopicPosition: _listTopicPosition,
                 ),
+                SizedBox(
+                  height: defaultSpace * 2,
+                ),
+                MyStoryComponent(
+                  key: _keyMyStory,
+                  size: size,
+                  topic: topicList.elementAt(0),
+                  isEnglish: isEnglish,
+                ),
+                MySkillComponent(
+                  key: _keyMySkill,
+                  size: size,
+                  topic: topicList.elementAt(1),
+                  isEnglish: isEnglish,
+                ),
+                ExtracurricularActivitiesComponent(
+                  key: _keyActivities,
+                  size: size,
+                  topic: topicList.elementAt(2),
+                  isEnglish: isEnglish,
+                ),
+                EducationComponent(
+                  key: _keyEducation,
+                  size: size,
+                  topic: topicList.elementAt(3),
+                  isEnglish: isEnglish,
+                ),
+                OtherComponent(
+                  key: _keyOther,
+                  size: size,
+                  topicModel: topicList.elementAt(4),
+                  isEnglish: isEnglish,
+                ),
+                ContactComponent(
+                  key: _keyContact,
+                  size: size,
+                  topic: topicList.elementAt(5),
+                  isEnglish: isEnglish,
+                ),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Container(
+              width: 50,
+              height: 200,
+              child: SideBarContactComponent(
+                axizType: AXIZ_TYPE.COLUMN,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

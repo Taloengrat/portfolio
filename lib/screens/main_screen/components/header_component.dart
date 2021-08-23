@@ -1,11 +1,12 @@
-import 'dart:developer';
 import 'dart:ui';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:taloengrat_cv/providers/sidebar_contact_provider.dart';
+import 'package:taloengrat_cv/models/header_model.dart';
+import 'package:taloengrat_cv/models/topic_model.dart';
+import 'package:taloengrat_cv/providers/language_provider.dart';
+import 'package:taloengrat_cv/screens/main_screen/widgets/header_menu_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/language_switch_widget.dart';
 
 import '../../../constance.dart';
@@ -31,6 +32,8 @@ class _HeaderComponentState extends State<HeaderComponent> {
 
   @override
   Widget build(BuildContext context) {
+    final language = Provider.of<LanguageProvider>(context).item;
+    bool isEnglish = language == 'English';
     return Container(
       width: widget.size.width,
       height: widget.size.height,
@@ -80,11 +83,16 @@ class _HeaderComponentState extends State<HeaderComponent> {
                           isRepeatingAnimation: false,
                           animatedTexts: [
                             TyperAnimatedText(
-                              'TALOENGRAT \nPOOMCHAIYA',
+                              isEnglish
+                                  ? headerModel.enName
+                                  : headerModel.thName,
                               // speed: Duration(milliseconds: 150),
                               textStyle: Theme.of(context).textTheme.headline3,
                             ),
-                            TyperAnimatedText('\nDeveloper',
+                            TyperAnimatedText(
+                                isEnglish
+                                    ? headerModel.enPosition
+                                    : headerModel.thPosition,
                                 textStyle:
                                     Theme.of(context).textTheme.subtitle1,
                                 // speed: Duration(milliseconds: 100),
@@ -95,11 +103,15 @@ class _HeaderComponentState extends State<HeaderComponent> {
                           text: TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                text: 'TALOENGRAT \nPOOMCHAIYA',
+                                text: isEnglish
+                                    ? headerModel.enName
+                                    : headerModel.thName,
                                 style: Theme.of(context).textTheme.headline3,
                               ),
                               TextSpan(
-                                  text: '\nDeveloper',
+                                  text: isEnglish
+                                      ? headerModel.enPosition
+                                      : headerModel.thPosition,
                                   style: Theme.of(context).textTheme.subtitle1),
                             ],
                           ),
@@ -133,37 +145,56 @@ class _HeaderComponentState extends State<HeaderComponent> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     MenuWidget(
-                      message: 'My Story',
+                      message: isEnglish
+                          ? topicList.elementAt(0).enTitle
+                          : topicList.elementAt(0).thTitle,
                       color: primaryColor,
                       index: 0,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
                     ),
                     MenuWidget(
-                      message: 'My skill',
+                      message: isEnglish
+                          ? topicList.elementAt(1).enTitle
+                          : topicList.elementAt(1).thTitle,
                       color: secondColor,
                       index: 1,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
                     ),
                     MenuWidget(
-                      message: 'Extracurricular\nactivities',
+                      message: isEnglish
+                          ? topicList.elementAt(2).enTitle
+                          : topicList.elementAt(2).thTitle,
                       color: thridColor,
                       index: 2,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
                     ),
                     MenuWidget(
-                      message: 'Education',
+                      message: isEnglish
+                          ? topicList.elementAt(3).enTitle
+                          : topicList.elementAt(3).thTitle,
                       color: fourthColor,
                       index: 3,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
                     ),
                     MenuWidget(
-                      message: 'Contact',
+                      message: isEnglish
+                          ? topicList.elementAt(4).enTitle
+                          : topicList.elementAt(4).thTitle,
                       color: fifthColor,
                       index: 4,
+                      scrollController: widget.scrollController,
+                      listTopicPosition: widget.listTopicPosition,
+                    ),
+                    MenuWidget(
+                      message: isEnglish
+                          ? topicList.elementAt(5).enTitle
+                          : topicList.elementAt(5).thTitle,
+                      color: fifthColor,
+                      index: 5,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
                     ),
@@ -177,112 +208,6 @@ class _HeaderComponentState extends State<HeaderComponent> {
             child: LanguageSwitchWidget(),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class MenuWidget extends StatefulWidget {
-  final int index;
-  final String message;
-  final Color color;
-  final ScrollController scrollController;
-  final List<double> listTopicPosition;
-  const MenuWidget({
-    Key? key,
-    required this.message,
-    required this.color,
-    required this.index,
-    required this.scrollController,
-    required this.listTopicPosition,
-  }) : super(key: key);
-
-  @override
-  _MenuWidgetState createState() => _MenuWidgetState();
-}
-
-class _MenuWidgetState extends State<MenuWidget> {
-  _moveTo(int index) {
-    if (widget.listTopicPosition.isEmpty) return;
-
-    widget.scrollController.animateTo(
-      widget.listTopicPosition.elementAt(index),
-      curve: Curves.linear,
-      duration: Duration(milliseconds: 500),
-    );
-  }
-
-  _scrollListener() {
-    // log(widget.scrollController.offset.toString(), name: 'scroll value');
-    if (widget.scrollController.offset ==
-        widget.scrollController.position.maxScrollExtent) {
-      Provider.of<SidebarProvider>(context, listen: false)
-          .updateReachBottom(true);
-    } else {
-      Provider.of<SidebarProvider>(context, listen: false)
-          .updateReachBottom(false);
-    }
-
-    if (widget.scrollController.offset <=
-            widget.scrollController.position.minScrollExtent &&
-        !widget.scrollController.position.outOfRange) {
-      Provider.of<SidebarProvider>(context, listen: false)
-          .updateReachBottom(true);
-    }
-
-    // if(widget.scrollController.offset >)
-  }
-
-  @override
-  void initState() {
-    widget.scrollController.addListener(_scrollListener);
-    super.initState();
-  }
-
-  bool isHover = false;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onHover: (e) {
-        setState(() {
-          if (e)
-            isHover = true;
-          else
-            isHover = false;
-        });
-      },
-      // onExit: (e) {
-      //   setState(() {
-      //     isHover = false;
-      //   });
-      // },
-      onTap: () => _moveTo(widget.index),
-      // onEnter: (e) => {if (e.down) },
-      // cursor: SystemMouseCursors.click,
-      child: Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        margin: EdgeInsets.all(5),
-        decoration: isHover
-            ? BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: widget.color, width: 5),
-                ),
-              )
-            : null,
-        child: FittedBox(
-          fit: BoxFit.contain,
-          child: Text(
-            widget.message,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: isHover ? 18 : 16,
-                fontWeight: isHover ? FontWeight.bold : FontWeight.normal,
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

@@ -5,9 +5,7 @@ import 'package:taloengrat_cv/models/icon_navigate_model.dart';
 
 class IconNavigate extends StatelessWidget {
   final ALTERNATIVE_COLOR alternativeColor;
-  // final String? path;
-  // final ALTERNATIVE_TYPE? alternativeType;
-  // final Widget child;
+
   final int index;
   const IconNavigate({
     Key? key,
@@ -58,6 +56,7 @@ class IconNavigate extends StatelessWidget {
                           )
                         : null,
                 content: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 5),
                   height: iconNavigate[index].alternativeType ==
                           ALTERNATIVE_TYPE.EMAIL
                       ? 100
@@ -114,22 +113,15 @@ class IconNavigate extends StatelessWidget {
                 ),
               ),
             ),
-      child: Image.asset(
-        alternativeColor == ALTERNATIVE_COLOR.BLACK
-            ? iconNavigate[index].pathImageB
-            : iconNavigate[index].pathImageW,
-        width: 32,
+      child: Tooltip(
+        message: iconNavigate[index].tooltipMessage,
+        child: Image.asset(
+          alternativeColor == ALTERNATIVE_COLOR.BLACK
+              ? iconNavigate[index].pathImageB
+              : iconNavigate[index].pathImageW,
+          width: 32,
+        ),
       ),
     );
   }
-}
-
-enum ALTERNATIVE_TYPE {
-  EMAIL,
-  LINE,
-}
-
-enum ALTERNATIVE_COLOR {
-  BLACK,
-  WHITE,
 }

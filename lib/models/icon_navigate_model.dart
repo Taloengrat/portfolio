@@ -1,5 +1,3 @@
-import 'package:taloengrat_cv/screens/main_screen/widgets/icon_newtab_widget.dart';
-
 class IconNavigateModel {
   final String tooltipMessage;
   final String url;
@@ -49,4 +47,22 @@ List<IconNavigateModel> iconNavigate = [
     pathImageW: 'images/youtube_w.png',
     url: 'https://www.youtube.com/channel/UCpZbrIT9vATGUYsyuegqeBQ/featured',
   ),
+  IconNavigateModel(
+    tooltipMessage: '082-839-7987',
+    pathImageB: 'images/phone-call-b.png',
+    pathImageW: 'images/phone-call-w.png',
+    url: '',
+    alternativeType: ALTERNATIVE_TYPE.PHONE,
+  ),
 ];
+
+enum ALTERNATIVE_TYPE {
+  EMAIL,
+  LINE,
+  PHONE,
+}
+
+enum ALTERNATIVE_COLOR {
+  BLACK,
+  WHITE,
+}

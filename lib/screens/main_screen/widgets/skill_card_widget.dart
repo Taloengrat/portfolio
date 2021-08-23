@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:taloengrat_cv/constance.dart';
+import 'package:taloengrat_cv/screens/main_screen/widgets/skill_level_widget.dart';
 
 class MyskillCardWidget extends StatefulWidget {
   final String title;
   final String detail;
+  final int level;
   final String? pathImageIcon;
 
   const MyskillCardWidget({
@@ -11,6 +13,7 @@ class MyskillCardWidget extends StatefulWidget {
     required this.title,
     required this.detail,
     this.pathImageIcon,
+    required this.level,
   }) : super(key: key);
 
   @override
@@ -19,6 +22,7 @@ class MyskillCardWidget extends StatefulWidget {
 
 class _MyskillCardWidgetState extends State<MyskillCardWidget> {
   bool isHover = false;
+  bool isExpand = false;
 
   @override
   void initState() {
@@ -29,16 +33,18 @@ class _MyskillCardWidgetState extends State<MyskillCardWidget> {
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      onHover: (e) {
+      onHover: (_) {
         if (!isHover) setState(() => isHover = true);
       },
-      onExit: (e) {
+      onExit: (_) {
         if (isHover) setState(() => isHover = false);
       },
       child: Container(
-        width: 300,
-        height: 300,
-        padding: EdgeInsets.all(10),
+        // width: 300,
+        // height: 120,
+        margin: EdgeInsets.all(
+          (defaultMargin / 2),
+        ),
         child: Align(
           alignment: Alignment.topLeft,
           child: AnimatedContainer(
@@ -55,31 +61,40 @@ class _MyskillCardWidgetState extends State<MyskillCardWidget> {
                 ),
               ],
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ExpansionTile(
+              leading: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 1.0),
+                      blurRadius: isHover ? 1.0 : 6.0,
+                    ),
+                  ],
+                ),
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage(
+                    widget.pathImageIcon!,
+                  ),
+                ),
+              ),
+              title: Text(
+                widget.title,
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              subtitle: SkillLevelWidget(
+                level: widget.level,
+              ),
+              expandedAlignment: Alignment.centerLeft,
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: AnimatedContainer(
-                    margin: EdgeInsets.all(defaultMargin as double),
-                    padding: EdgeInsets.all(defaultPadding as double),
-                    duration: Duration(milliseconds: 250),
-                    width: 75,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                      boxShadow: [
-                        if (!isHover)
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0.0, 1.0),
-                            blurRadius: 6.0,
-                          ),
-                      ],
-                    ),
-                    child: Image.asset(
-                      widget.pathImageIcon!,
-                    ),
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: defaultSpace as double,
+                  ),
+                  child: Text(
+                    widget.detail,
                   ),
                 ),
               ],

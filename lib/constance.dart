@@ -9,8 +9,11 @@ const fifthColor = Color(0xffa39176);
 const defaultPadding = 8;
 const defaultMargin = 8;
 const defaultSpace = 20;
-
+const defaultSubTopicPadding = 32;
+const defaultRadius = 5;
 const languageList = [
   'English',
   'Thai',
 ];
+
+const back_end_api = 'http://localhost:8080/download-cv';
