@@ -46,7 +46,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                 color: Colors.black38,
                 image: DecorationImage(
                   image: AssetImage(
-                    'head_background.jpg',
+                    background_header_image,
                   ),
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
@@ -57,7 +57,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
           Align(
             alignment: Alignment(-0.5, 1),
             child: Container(
-              child: Image.asset('myself_logo.png'),
+              child: Image.asset(profile_picture),
             ),
           ),
           Align(
@@ -193,7 +193,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                       message: isEnglish
                           ? topicList.elementAt(5).enTitle
                           : topicList.elementAt(5).thTitle,
-                      color: fifthColor,
+                      color: sixthColor,
                       index: 5,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,

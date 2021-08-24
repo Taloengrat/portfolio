@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/constance.dart';
 import 'package:taloengrat_cv/models/extracurricular_atvt_model.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
-import 'package:taloengrat_cv/providers/language_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/activity_card_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 

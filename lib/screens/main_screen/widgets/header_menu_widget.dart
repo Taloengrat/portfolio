@@ -72,14 +72,7 @@ class _MenuWidgetState extends State<MenuWidget> {
             isHover = false;
         });
       },
-      // onExit: (e) {
-      //   setState(() {
-      //     isHover = false;
-      //   });
-      // },
       onTap: () => _moveTo(widget.index),
-      // onEnter: (e) => {if (e.down) },
-      // cursor: SystemMouseCursors.click,
       child: Container(
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(horizontal: 10),

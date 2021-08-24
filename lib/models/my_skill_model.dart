@@ -51,6 +51,12 @@ List<MySkillModel> listMyskill = [
       detail: 'detail6',
       path: 'images/language/android_studio.png',
       skilType: SKILL_TYPE.TOOL),
+  MySkillModel(
+      title: 'Unity',
+      skillLevel: 2,
+      detail: 'detail6',
+      path: 'images/language/unity.jpg',
+      skilType: SKILL_TYPE.TOOL),
 ];
 
 enum SKILL_TYPE {

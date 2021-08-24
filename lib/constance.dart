@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xff0a323f);
-const secondColor = Color(0xff08596b);
-const thridColor = Color(0xff78979d);
-const fourthColor = Color(0xff546f62);
-const fifthColor = Color(0xffa39176);
+const secondColor = Color(0xff005A63);
+const thridColor = Color(0xff008578);
+const fourthColor = Color(0xff4AAF7C);
+const fifthColor = Color(0xff9BD775);
+const sixthColor = Color(0xffF9F871);
 
 const defaultPadding = 8;
 const defaultMargin = 8;
@@ -16,4 +17,6 @@ const languageList = [
   'Thai',
 ];
 
+const background_header_image = 'head_background.jpg';
+const profile_picture = 'myself_logo.png';
 const back_end_api = 'http://localhost:8080/download-cv';

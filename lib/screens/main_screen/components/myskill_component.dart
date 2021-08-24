@@ -48,49 +48,19 @@ class MySkillComponent extends StatelessWidget {
           SizedBox(
             height: 50,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            // alignment: WrapAlignment.center,
+          Wrap(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisSize: MainAxisSize.min,
+            alignment: WrapAlignment.center,
             children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  children: [
-                    ...listMyskill.map((e) {
-                      if (e.skilType == SKILL_TYPE.LANGUAGE) {
-                        return MyskillCardWidget(
-                          title: e.title,
-                          level: e.skillLevel,
-                          detail: e.detail,
-                          pathImageIcon: e.path,
-                        );
-                      } else {
-                        return Container();
-                      }
-                    }).toList()
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Column(
-                  children: [
-                    ...listMyskill.map((e) {
-                      if (e.skilType == SKILL_TYPE.TOOL) {
-                        return MyskillCardWidget(
-                          title: e.title,
-                          level: e.skillLevel,
-                          detail: e.detail,
-                          pathImageIcon: e.path,
-                        );
-                      } else {
-                        return Container();
-                      }
-                    }).toList()
-                  ],
-                ),
-              ),
+              ...listMyskill.map((e) {
+                return MyskillCardWidget(
+                  title: e.title,
+                  level: e.skillLevel,
+                  detail: e.detail,
+                  pathImageIcon: e.path,
+                );
+              }).toList()
             ],
           ),
         ],
