@@ -27,7 +27,8 @@ class _ActivitiesCardWidgetState extends State<ActivitiesCardWidget> {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        AnimatedContainer(
+        Expanded(
+          child: AnimatedContainer(
             duration: Duration(milliseconds: 250),
             // width: 400,
             // height: 300,
@@ -93,15 +94,22 @@ class _ActivitiesCardWidgetState extends State<ActivitiesCardWidget> {
                       SizedBox(
                         height: defaultMargin as double,
                       ),
-                      Text(
-                        widget.content,
-                        style: Theme.of(context).textTheme.bodyText2,
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        children: [
+                          SelectableText(
+                            widget.content,
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ],
               ),
-            ))
+            ),
+          ),
+        )
       ],
     );
   }
