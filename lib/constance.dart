@@ -17,6 +17,6 @@ const languageList = [
   'Thai',
 ];
 
-const background_header_image = 'head_background.jpg';
-const profile_picture = 'myself_logo.png';
+const background_header_image = 'assets/head_background.jpg';
+const profile_picture = 'assets/myself_logo.png';
 const back_end_api = 'http://localhost:8080/download-cv';

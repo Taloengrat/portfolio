@@ -8,7 +8,6 @@ import 'package:taloengrat_cv/providers/sidebar_contact_provider.dart';
 import 'screens/main_screen/main_screen.dart';
 
 void main() {
-  // await GlobalConfiguration().loadFromAsset("app_setting");
   runApp(
     MyApp(),
   );

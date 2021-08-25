@@ -16,43 +16,36 @@ class IconNavigateModel {
 List<IconNavigateModel> iconNavigate = [
   IconNavigateModel(
     tooltipMessage: 'Taloengrat Poomchaiya',
-    pathImageB: 'images/github_b.png',
-    pathImageW: 'images/github_w.png',
+    pathImageB: 'assets/images/github_b.png',
+    pathImageW: 'assets/images/github_w.png',
     url: 'https://github.com/Taloengrat?tab=repositories',
   ),
   IconNavigateModel(
     tooltipMessage: 'Taloengrat Poomchaiya',
-    pathImageB: 'images/linkedin_b.png',
-    pathImageW: 'images/linkedin_w.png',
+    pathImageB: 'assets/images/linkedin_b.png',
+    pathImageW: 'assets/images/linkedin_w.png',
     url:
         'https://www.linkedin.com/in/taloengrat-poomchaiya-5bba86204/?originalSubdomain=th',
   ),
   IconNavigateModel(
     tooltipMessage: 'Line id : armtp1997',
-    pathImageB: 'images/line-logo_b.png',
-    pathImageW: 'images/line-logo_w.png',
+    pathImageB: 'assets/images/line-logo_b.png',
+    pathImageW: 'assets/images/line-logo_w.png',
     url: '',
     alternativeType: ALTERNATIVE_TYPE.LINE,
   ),
   IconNavigateModel(
     tooltipMessage: 'tp.sourcecode@gmail.com',
-    pathImageB: 'images/email_b.png',
-    pathImageW: 'images/email_w.png',
+    pathImageB: 'assets/images/email_b.png',
+    pathImageW: 'assets/images/email_w.png',
     url: '',
     alternativeType: ALTERNATIVE_TYPE.EMAIL,
   ),
   IconNavigateModel(
     tooltipMessage: 'tp.sourcecode@gmail.com',
-    pathImageB: 'images/youtube_b.png',
-    pathImageW: 'images/youtube_w.png',
+    pathImageB: 'assets/images/youtube_b.png',
+    pathImageW: 'assets/images/youtube_w.png',
     url: 'https://www.youtube.com/channel/UCpZbrIT9vATGUYsyuegqeBQ/featured',
-  ),
-  IconNavigateModel(
-    tooltipMessage: '082-839-7987',
-    pathImageB: 'images/phone-call-b.png',
-    pathImageW: 'images/phone-call-w.png',
-    url: '',
-    alternativeType: ALTERNATIVE_TYPE.PHONE,
   ),
 ];
 
