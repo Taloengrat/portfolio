@@ -10,7 +10,7 @@ class MyStoryModel {
 
 MyStoryModel myStoryModel = MyStoryModel(
   enDetail:
-      '         My name is taloengrat poomchaiya call me arm. I\'am 23 years old. I\'m passionate person about various technologies such as Computers hardware, Website or Mobild Development and Desktop Development. Currently working as Software Engineer. My free time spent with study and develop skills about developer in addition i\'m also like watch movie through live streaming, play a game, singing and play guitar.',
+      '         My name is taloengrat poomchaiya call me Arm. I\'m 23 years old. I\'m passionate person about various technologies such as Computers hardware, Website or Mobild Development and Desktop Development. Currently working as Software Engineer. My free time spent with study and develop skills about developer in addition i\'m also like watch movie through live streaming, play a game, singing and play guitar.',
   thDetail:
       '     สวัสดีครับ ผม ชื่อเถลิงรัฐ  ภูมิไชยา ชื่อเล่น อาร์ม อายุ 23 ปี เป็นผู้ที่หลงใหล ในเทคโนโลยีต่างๆ ไม่ว่าจะเป็น website mobile application, computer hardware ปัจจุบันทำงานสายงาน desktop application เคยทำโปรเจ็คจบโดยใช้ android mobile application เวลาว่างจะใช้ไปกับ การศึกษา พัฒนาสกิล development เกี่ยวกับ front end เช่น flutter(web, mobile, desktop), angular, nuxt.js นอกจากนี้ก็ ชอบดูหนังผ่าน streaming เล่นเกมส์ และร้องเพลงเล่นกีต้าร์  ',
 );
