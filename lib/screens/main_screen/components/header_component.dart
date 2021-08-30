@@ -33,10 +33,13 @@ class _HeaderComponentState extends State<HeaderComponent> {
   @override
   Widget build(BuildContext context) {
     final language = Provider.of<LanguageProvider>(context).item;
-    bool isEnglish = language == 'English';
+    final bool isEnglish = language == 'English';
     return Container(
       width: widget.size.width,
-      height: widget.size.height,
+      height:
+          widget.size.height <= heightTarget || widget.size.width <= widthTarget
+              ? widget.size.height * 0.5
+              : widget.size.height,
       child: Stack(
         children: [
           Align(
@@ -69,53 +72,64 @@ class _HeaderComponentState extends State<HeaderComponent> {
                   sigmaX: 10,
                   sigmaY: 10,
                 ),
-                child: Container(
-                  alignment: Alignment.center,
-                  constraints: BoxConstraints(
-                    maxHeight: 200,
-                    maxWidth: 400,
-                    minHeight: 200,
-                    minWidth: 200,
-                  ),
-                  child: !isFinished
-                      ? AnimatedTextKit(
-                          onFinished: () => setState(() => isFinished = true),
-                          isRepeatingAnimation: false,
-                          animatedTexts: [
-                            TyperAnimatedText(
-                              isEnglish
-                                  ? headerModel.enName
-                                  : headerModel.thName,
-                              // speed: Duration(milliseconds: 150),
-                              textStyle: Theme.of(context).textTheme.headline3,
-                            ),
-                            TyperAnimatedText(
-                                isEnglish
-                                    ? headerModel.enPosition
-                                    : headerModel.thPosition,
-                                textStyle:
-                                    Theme.of(context).textTheme.subtitle1,
-                                // speed: Duration(milliseconds: 100),
-                                curve: Curves.easeInCubic),
-                          ],
-                        )
-                      : RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: isEnglish
-                                    ? headerModel.enName
-                                    : headerModel.thName,
-                                style: Theme.of(context).textTheme.headline3,
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      constraints: BoxConstraints(
+                        maxHeight: widget.size.height <= heightTarget ||
+                                widget.size.width <= widthTarget
+                            ? 70
+                            : 200,
+                        maxWidth: widget.size.width <= widthTarget ? 100 : 400,
+                      ),
+                      child: !isFinished
+                          ? AnimatedTextKit(
+                              onFinished: () =>
+                                  setState(() => isFinished = true),
+                              isRepeatingAnimation: false,
+                              animatedTexts: [
+                                TyperAnimatedText(
+                                  isEnglish
+                                      ? headerModel.enName
+                                      : headerModel.thName,
+                                  // speed: Duration(milliseconds: 150),
+                                  textStyle:
+                                      Theme.of(context).textTheme.headline3,
+                                ),
+                                TyperAnimatedText(
+                                    isEnglish
+                                        ? headerModel.enPosition
+                                        : headerModel.thPosition,
+                                    textStyle:
+                                        Theme.of(context).textTheme.subtitle1,
+                                    // speed: Duration(milliseconds: 100),
+                                    curve: Curves.easeInCubic),
+                              ],
+                            )
+                          : RichText(
+                              text: TextSpan(
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: isEnglish
+                                        ? headerModel.enName
+                                        : headerModel.thName,
+                                    style:
+                                        Theme.of(context).textTheme.headline3,
+                                  ),
+                                  TextSpan(
+                                      text: isEnglish
+                                          ? headerModel.enPosition
+                                          : headerModel.thPosition,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle1),
+                                ],
                               ),
-                              TextSpan(
-                                  text: isEnglish
-                                      ? headerModel.enPosition
-                                      : headerModel.thPosition,
-                                  style: Theme.of(context).textTheme.subtitle1),
-                            ],
-                          ),
-                        ),
+                            ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -124,7 +138,8 @@ class _HeaderComponentState extends State<HeaderComponent> {
             alignment: Alignment.bottomCenter,
             child: Container(
               alignment: Alignment.center,
-              width: widget.size.width * (widget.size.width >= 830 ? 0.5 : 0.9),
+              width: widget.size.width *
+                  (widget.size.width <= widthTarget ? 0.9 : 0.6),
               height: 70,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -152,6 +167,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                       index: 0,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
+                      size: widget.size,
                     ),
                     MenuWidget(
                       message: isEnglish
@@ -161,6 +177,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                       index: 1,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
+                      size: widget.size,
                     ),
                     MenuWidget(
                       message: isEnglish
@@ -170,6 +187,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                       index: 2,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
+                      size: widget.size,
                     ),
                     MenuWidget(
                       message: isEnglish
@@ -179,6 +197,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                       index: 3,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
+                      size: widget.size,
                     ),
                     MenuWidget(
                       message: isEnglish
@@ -188,6 +207,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                       index: 4,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
+                      size: widget.size,
                     ),
                     MenuWidget(
                       message: isEnglish
@@ -197,6 +217,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                       index: 5,
                       scrollController: widget.scrollController,
                       listTopicPosition: widget.listTopicPosition,
+                      size: widget.size,
                     ),
                   ],
                 ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
-import 'package:taloengrat_cv/providers/language_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/sidebar_contact.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 import 'package:http/http.dart' as http;
@@ -23,9 +21,9 @@ class ContactComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: defaultPadding as double),
+      padding: EdgeInsets.symmetric(horizontal: defaultPadding as double),
       width: double.infinity,
-      height: size.height * 0.2,
+      // height: size.height * 0,
       constraints: BoxConstraints(
         maxHeight: size.height,
         maxWidth: double.infinity,
@@ -33,38 +31,45 @@ class ContactComponent extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.black87,
       ),
-      margin: EdgeInsets.symmetric(vertical: defaultMargin * 2),
-      child: Column(
+      margin: EdgeInsets.only(top: defaultMargin * 2),
+      child: Wrap(
+        alignment: WrapAlignment.center,
         children: [
-          Container(
-            width: size.width * 0.8,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TopicNameWidget(
-                  color: thridColor,
-                  topicName: isEnglish ? topic.enTitle : topic.thTitle,
-                  differenceStyle: true,
+          Column(
+            children: [
+              Container(
+                width: size.width * 0.8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TopicNameWidget(
+                      size: size,
+                      color: thridColor,
+                      topicName: isEnglish ? topic.enTitle : topic.thTitle,
+                      differenceStyle: true,
+                    ),
+                    RaisedButton.icon(
+                      onPressed: doDownloadCV,
+                      icon: Icon(
+                        Icons.download,
+                      ),
+                      label: Text(
+                        isEnglish ? 'Download' : 'ดาวน์โหลด',
+                        style: Theme.of(context).textTheme.button,
+                      ),
+                    ),
+                  ],
                 ),
-                RaisedButton.icon(
-                  onPressed: doDownloadCV,
-                  icon: Icon(
-                    Icons.download,
-                  ),
-                  label: Text(
-                    isEnglish ? 'Download' : 'ดาวน์โหลด',
-                    style: Theme.of(context).textTheme.button,
-                  ),
+              ),
+              Container(
+                height: 50,
+                width: 200,
+                child: SideBarContactComponent(
+                  size: size,
+                  axizType: AXIZ_TYPE.ROW,
                 ),
-              ],
-            ),
-          ),
-          Container(
-            height: 50,
-            width: 200,
-            child: SideBarContactComponent(
-              axizType: AXIZ_TYPE.ROW,
-            ),
+              ),
+            ],
           ),
         ],
       ),

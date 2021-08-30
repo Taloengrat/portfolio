@@ -7,6 +7,13 @@ const fourthColor = Color(0xff4AAF7C);
 const fifthColor = Color(0xff9BD775);
 const sixthColor = Color(0xffF9F871);
 
+const matchPrimaryColor = Color(0xff0A323F);
+const matchSecondColor = Color(0xff2E4C64);
+const matchThridColor = Color(0xff5A6688);
+const matchFourthColor = Color(0xff8D7EA7);
+const matchFifthColor = Color(0xffC397BE);
+const matchSixthColor = Color(0xffF9B3CF);
+
 const defaultPadding = 8;
 const defaultMargin = 8;
 const defaultSpace = 20;
@@ -16,6 +23,9 @@ const languageList = [
   'English',
   'Thai',
 ];
+
+int widthTarget = 800;
+int heightTarget = 740;
 
 const background_header_image = 'assets/head_background.jpg';
 const profile_picture = 'assets/myself_logo.png';

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:taloengrat_cv/constance.dart';
 import 'package:taloengrat_cv/providers/sidebar_contact_provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MenuWidget extends StatefulWidget {
   final int index;
@@ -9,6 +11,7 @@ class MenuWidget extends StatefulWidget {
   final Color color;
   final ScrollController scrollController;
   final List<double> listTopicPosition;
+  final Size size;
   const MenuWidget({
     Key? key,
     required this.message,
@@ -16,6 +19,7 @@ class MenuWidget extends StatefulWidget {
     required this.index,
     required this.scrollController,
     required this.listTopicPosition,
+    required this.size,
   }) : super(key: key);
 
   @override
@@ -91,7 +95,7 @@ class _MenuWidgetState extends State<MenuWidget> {
             textAlign: TextAlign.center,
             style: GoogleFonts.prompt(
               textStyle: TextStyle(
-                fontSize: isHover ? 18 : 16,
+                fontSize: getFontSize(),
                 fontWeight: isHover ? FontWeight.bold : FontWeight.normal,
               ),
             ),
@@ -99,5 +103,15 @@ class _MenuWidgetState extends State<MenuWidget> {
         ),
       ),
     );
+  }
+
+  getFontSize() {
+    if (isHover) {
+      if (widget.size.width <= widthTarget) {
+        isHover ? 40.sp : 38.sp;
+      } else {
+        isHover ? 18.sp : 16.sp;
+      }
+    }
   }
 }

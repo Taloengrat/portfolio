@@ -33,6 +33,7 @@ class MySkillComponent extends StatelessWidget {
           Row(
             children: [
               TopicNameWidget(
+                size: size,
                 color: primaryColor,
                 topicName: isEnglish ? topic.enTitle : topic.thTitle,
               ),

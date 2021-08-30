@@ -15,6 +15,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -53,7 +54,6 @@ class MyApp extends StatelessWidget {
                 textStyle: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,
-                  fontSize: 50.sp,
                 ),
               ),
               headline5: GoogleFonts.prompt(
@@ -72,21 +72,18 @@ class MyApp extends StatelessWidget {
                 textStyle: TextStyle(
                   fontWeight: FontWeight.normal,
                   color: Colors.black87,
-                  fontSize: 24.sp,
                 ),
               ),
               bodyText2: GoogleFonts.prompt(
                 textStyle: TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Colors.blueGrey,
-                  fontSize: 18.sp,
                 ),
               ),
               button: GoogleFonts.prompt(
                 textStyle: TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Colors.black,
-                  fontSize: 18.sp,
                 ),
               ),
             ),

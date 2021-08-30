@@ -37,6 +37,7 @@ class _OtherComponentState extends State<OtherComponent> {
           Row(
             children: [
               TopicNameWidget(
+                size: widget.size,
                 color: primaryColor,
                 topicName: widget.isEnglish
                     ? widget.topicModel.enTitle
@@ -55,6 +56,7 @@ class _OtherComponentState extends State<OtherComponent> {
             children: otherModel
                 .map(
                   (e) => OtherWidget(
+                    size: widget.size,
                     otherModel: e,
                     isEnglish: widget.isEnglish,
                   ),

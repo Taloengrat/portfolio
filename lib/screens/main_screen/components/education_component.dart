@@ -32,6 +32,7 @@ class EducationComponent extends StatelessWidget {
           Row(
             children: [
               TopicNameWidget(
+                size: size,
                 color: primaryColor,
                 topicName: isEnglish ? topic.enTitle : topic.thTitle,
               ),
@@ -47,6 +48,8 @@ class EducationComponent extends StatelessWidget {
           Column(
             children: educationModelData
                 .map((e) => EducationTileWidget(
+                      size: size,
+                      color: e.color,
                       path: e.logoPath,
                       title: (isEnglish ? e.enUniversity : e.thUniversity) +
                           ' - ' +

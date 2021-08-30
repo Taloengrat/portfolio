@@ -31,7 +31,7 @@ List<ExtracurricularATVTModel> extraccurricularATVModel = [
     thTitle: '',
     pathImage: 'images/activities/extracurricular_13.png',
     activityAxis: ACTIVITY_AXIS.HORIZONTAL,
-    color: thridColor,
+    color: secondColor,
   ),
   ExtracurricularATVTModel(
     enContain:
@@ -41,7 +41,7 @@ List<ExtracurricularATVTModel> extraccurricularATVModel = [
     thTitle: '',
     pathImage: 'images/activities/extracurricular_2.png',
     activityAxis: ACTIVITY_AXIS.HORIZONTAL,
-    color: fourthColor,
+    color: thridColor,
   ),
   ExtracurricularATVTModel(
     enContain: '   Hold position since 2018 - 2019',
@@ -50,6 +50,6 @@ List<ExtracurricularATVTModel> extraccurricularATVModel = [
     thTitle: '',
     pathImage: 'images/activities/extracurricular_6.png',
     activityAxis: ACTIVITY_AXIS.HORIZONTAL,
-    color: fifthColor,
+    color: fourthColor,
   ),
 ];

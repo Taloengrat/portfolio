@@ -1,16 +1,19 @@
 import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:taloengrat_cv/constance.dart';
 import 'package:taloengrat_cv/models/icon_navigate_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IconNavigate extends StatelessWidget {
   final ALTERNATIVE_COLOR alternativeColor;
-
+  final Size size;
   final int index;
   const IconNavigate({
     Key? key,
     required this.alternativeColor,
     required this.index,
+    required this.size,
     // required this.path,
     // required this.child,
     // this.alternativeType,
@@ -119,7 +122,7 @@ class IconNavigate extends StatelessWidget {
           alternativeColor == ALTERNATIVE_COLOR.BLACK
               ? iconNavigate[index].pathImageB
               : iconNavigate[index].pathImageW,
-          width: 32,
+          width: size.width <= widthTarget ? 45.sp : 32,
         ),
       ),
     );

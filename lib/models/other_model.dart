@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taloengrat_cv/constance.dart';
 
 class OtherModel {
   String? enTitle;
@@ -22,7 +23,7 @@ class OtherModel {
 
 List<OtherModel> otherModel = [
   OtherModel(
-    color: Colors.red,
+    color: secondColor,
     enTitle: 'Internship',
     thTitle: 'ฝึกงาน',
     enSubtitle: 'NSTDA NECTEC | June - October 2019',
@@ -31,7 +32,7 @@ List<OtherModel> otherModel = [
     thDetail: '',
   ),
   OtherModel(
-    color: Colors.yellow,
+    color: thridColor,
     enTitle: 'Senior Computer Engineering Project',
     thTitle: 'โปรเจกต์จบการศึกษา วิศวกรรมคอมพิวเตอร์',
     enSubtitle: 'A Mobile Application For Speaking Skill Practice In English',

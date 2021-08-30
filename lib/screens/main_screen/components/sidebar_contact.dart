@@ -6,9 +6,11 @@ import 'package:taloengrat_cv/screens/main_screen/widgets/icon_newtab_widget.dar
 
 class SideBarContactComponent extends StatelessWidget {
   final AXIZ_TYPE axizType;
+  final Size size;
   const SideBarContactComponent({
     Key? key,
     required this.axizType,
+    required this.size,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class SideBarContactComponent extends StatelessWidget {
               children: List.generate(
                 iconNavigate.length,
                 (index) => IconNavigate(
+                  size: size,
                   index: index,
                   alternativeColor: ALTERNATIVE_COLOR.BLACK,
                 ),
@@ -36,6 +39,7 @@ class SideBarContactComponent extends StatelessWidget {
             children: List.generate(
               iconNavigate.length,
               (index) => IconNavigate(
+                size: size,
                 index: index,
                 alternativeColor: ALTERNATIVE_COLOR.WHITE,
               ),

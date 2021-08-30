@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:taloengrat_cv/constance.dart';
+
 class EducationModel {
   String enUniversity;
   String thUniversity;
@@ -6,6 +9,7 @@ class EducationModel {
   String yearEn;
   String yearTh;
   String logoPath;
+  Color color;
   EducationModel({
     required this.enUniversity,
     required this.thUniversity,
@@ -14,6 +18,7 @@ class EducationModel {
     required this.yearEn,
     required this.yearTh,
     required this.logoPath,
+    required this.color,
   });
 }
 
@@ -26,6 +31,7 @@ List<EducationModel> educationModelData = [
     yearEn: '2013',
     yearTh: '2556',
     logoPath: 'university_icon.jpg',
+    color: secondColor,
   ),
   EducationModel(
     enUniversity: 'Ragamangala University Of Technology Thanyaburi',
@@ -35,5 +41,6 @@ List<EducationModel> educationModelData = [
     yearEn: '2016',
     yearTh: '2559',
     logoPath: 'university_icon.jpg',
+    color: thridColor,
   ),
 ];

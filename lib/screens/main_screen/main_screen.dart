@@ -166,6 +166,7 @@ class _MainScreenState extends State<MainScreen> {
               width: 50,
               height: 200,
               child: SideBarContactComponent(
+                size: size,
                 axizType: AXIZ_TYPE.COLUMN,
               ),
             ),

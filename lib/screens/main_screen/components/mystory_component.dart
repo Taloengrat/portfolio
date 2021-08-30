@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:taloengrat_cv/models/about_me_model.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constance.dart';
 
 class MyStoryComponent extends StatelessWidget {
@@ -31,6 +32,7 @@ class MyStoryComponent extends StatelessWidget {
           Row(
             children: [
               TopicNameWidget(
+                size: size,
                 color: primaryColor,
                 topicName: isEnglish ? topic.enTitle : topic.thTitle,
               ),
@@ -53,7 +55,15 @@ class MyStoryComponent extends StatelessWidget {
                 toolbarOptions: ToolbarOptions(
                   copy: true,
                 ),
-                style: Theme.of(context).textTheme.bodyText1,
+                style: size.width <= widthTarget || size.height <= heightTarget
+                    ? GoogleFonts.prompt(
+                        textStyle: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          color: Colors.blueGrey,
+                          fontSize: 45.sp,
+                        ),
+                      )
+                    : Theme.of(context).textTheme.bodyText1,
               ),
             ],
           ),
