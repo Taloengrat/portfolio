@@ -57,6 +57,18 @@ List<MySkillModel> listMyskill = [
       detail: 'detail6',
       path: 'assets/images/language/unity.jpg',
       skilType: SKILL_TYPE.TOOL),
+  MySkillModel(
+      title: 'Docker',
+      skillLevel: 2,
+      detail: 'detail7',
+      path: 'assets/images/language/docker.png',
+      skilType: SKILL_TYPE.TOOL),
+  MySkillModel(
+      title: 'Kubernetes',
+      skillLevel: 2,
+      detail: 'detail7',
+      path: 'assets/images/language/kubernetes.png',
+      skilType: SKILL_TYPE.TOOL),
 ];
 
 enum SKILL_TYPE {

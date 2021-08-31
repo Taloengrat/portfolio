@@ -122,7 +122,7 @@ class IconNavigate extends StatelessWidget {
           alternativeColor == ALTERNATIVE_COLOR.BLACK
               ? iconNavigate[index].pathImageB
               : iconNavigate[index].pathImageW,
-          width: size.width <= widthTarget ? 50.sp : 32,
+          width: size.width <= widthTarget ? 70.sp : 32,
         ),
       ),
     );

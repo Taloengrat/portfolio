@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/header_model.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
 import 'package:taloengrat_cv/providers/language_provider.dart';
+import 'package:taloengrat_cv/providers/widget_position_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/header_menu_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/language_switch_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,13 +16,13 @@ import '../../../constance.dart';
 class HeaderComponent extends StatefulWidget {
   final ScrollController scrollController;
   final Size size;
-  final List<double> listTopicPosition;
+  // final List<double> listTopicPosition;
 
   HeaderComponent({
     Key? key,
     required this.size,
     required this.scrollController,
-    required this.listTopicPosition,
+    // required this.listTopicPosition,
   }) : super(key: key);
 
   @override
@@ -31,75 +32,9 @@ class HeaderComponent extends StatefulWidget {
 class _HeaderComponentState extends State<HeaderComponent> {
   bool isFinished = false;
 
-  List<Widget> getMenuList(
-    bool isEnglish,
-  ) {
-    return [
-      MenuWidget(
-        message: isEnglish
-            ? topicList.elementAt(0).enTitle
-            : topicList.elementAt(0).thTitle,
-        color: primaryColor,
-        index: 0,
-        scrollController: widget.scrollController,
-        listTopicPosition: widget.listTopicPosition,
-        size: widget.size,
-      ),
-      MenuWidget(
-        message: isEnglish
-            ? topicList.elementAt(1).enTitle
-            : topicList.elementAt(1).thTitle,
-        color: secondColor,
-        index: 1,
-        scrollController: widget.scrollController,
-        listTopicPosition: widget.listTopicPosition,
-        size: widget.size,
-      ),
-      MenuWidget(
-        message: isEnglish
-            ? topicList.elementAt(2).enTitle
-            : topicList.elementAt(2).thTitle,
-        color: thridColor,
-        index: 2,
-        scrollController: widget.scrollController,
-        listTopicPosition: widget.listTopicPosition,
-        size: widget.size,
-      ),
-      MenuWidget(
-        message: isEnglish
-            ? topicList.elementAt(3).enTitle
-            : topicList.elementAt(3).thTitle,
-        color: fourthColor,
-        index: 3,
-        scrollController: widget.scrollController,
-        listTopicPosition: widget.listTopicPosition,
-        size: widget.size,
-      ),
-      MenuWidget(
-        message: isEnglish
-            ? topicList.elementAt(4).enTitle
-            : topicList.elementAt(4).thTitle,
-        color: fifthColor,
-        index: 4,
-        scrollController: widget.scrollController,
-        listTopicPosition: widget.listTopicPosition,
-        size: widget.size,
-      ),
-      MenuWidget(
-        message: isEnglish
-            ? topicList.elementAt(5).enTitle
-            : topicList.elementAt(5).thTitle,
-        color: sixthColor,
-        index: 5,
-        scrollController: widget.scrollController,
-        listTopicPosition: widget.listTopicPosition,
-        size: widget.size,
-      ),
-    ];
-  }
-
   @override
   Widget build(BuildContext context) {
+    final position = Provider.of<WidgetPositionProvider>(context).item;
     final language = Provider.of<LanguageProvider>(context).item;
     final bool isEnglish = language == 'English';
     return Container(
@@ -258,7 +193,74 @@ class _HeaderComponentState extends State<HeaderComponent> {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: getMenuList(isEnglish),
+                    children: [
+                      MenuWidget(
+                        message: isEnglish
+                            ? topicList.elementAt(0).enTitle
+                            : topicList.elementAt(0).thTitle,
+                        color: primaryColor,
+                        index: 0,
+                        scrollController: widget.scrollController,
+                        // listTopicPosition: widget.listTopicPosition,
+                        size: widget.size,
+                        position: position[1],
+                      ),
+                      MenuWidget(
+                        message: isEnglish
+                            ? topicList.elementAt(1).enTitle
+                            : topicList.elementAt(1).thTitle,
+                        color: secondColor,
+                        index: 1,
+                        scrollController: widget.scrollController,
+                        // listTopicPosition: widget.listTopicPosition,
+                        size: widget.size,
+                        position: position[2],
+                      ),
+                      MenuWidget(
+                        message: isEnglish
+                            ? topicList.elementAt(2).enTitle
+                            : topicList.elementAt(2).thTitle,
+                        color: thridColor,
+                        index: 2,
+                        scrollController: widget.scrollController,
+                        // listTopicPosition: widget.listTopicPosition,
+                        size: widget.size,
+                        position: position[3],
+                      ),
+                      MenuWidget(
+                        message: isEnglish
+                            ? topicList.elementAt(3).enTitle
+                            : topicList.elementAt(3).thTitle,
+                        color: fourthColor,
+                        index: 3,
+                        scrollController: widget.scrollController,
+                        // listTopicPosition: widget.listTopicPosition,
+                        size: widget.size,
+                        position: position[4],
+                      ),
+                      MenuWidget(
+                        message: isEnglish
+                            ? topicList.elementAt(4).enTitle
+                            : topicList.elementAt(4).thTitle,
+                        color: fifthColor,
+                        index: 4,
+                        scrollController: widget.scrollController,
+                        // listTopicPosition: widget.listTopicPosition,
+                        size: widget.size,
+                        position: position[5],
+                      ),
+                      MenuWidget(
+                        message: isEnglish
+                            ? topicList.elementAt(5).enTitle
+                            : topicList.elementAt(5).thTitle,
+                        color: sixthColor,
+                        index: 5,
+                        scrollController: widget.scrollController,
+                        // listTopicPosition: widget.listTopicPosition,
+                        size: widget.size,
+                        position: position[6],
+                      ),
+                    ],
                   ),
                 ),
               ),

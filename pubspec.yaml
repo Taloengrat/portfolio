@@ -61,6 +61,8 @@ flutter:
     - assets/images/language/spring.png
     - assets/images/language/type_script.png
     - assets/images/language/unity.jpg
+    - assets/images/language/docker.png
+    - assets/images/language/kubernetes.png
     - assets/images/email_b.png
     - assets/images/email_w.png
     - assets/images/github_b.png

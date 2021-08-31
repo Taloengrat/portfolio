@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
+import 'package:taloengrat_cv/providers/widget_position_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/sidebar_contact.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 import 'package:http/http.dart' as http;
@@ -9,7 +11,7 @@ import 'dart:developer';
 import 'dart:html' as html;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ContactComponent extends StatelessWidget {
+class ContactComponent extends StatefulWidget {
   final Size size;
   final TopicModel topic;
   final bool isEnglish;
@@ -21,13 +23,37 @@ class ContactComponent extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _ContactComponentState createState() => _ContactComponentState();
+}
+
+class _ContactComponentState extends State<ContactComponent> {
+  GlobalKey _key = GlobalKey();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addPostFrameCallback(_getPosition);
+    super.initState();
+  }
+
+  _getPosition(_) {
+    final RenderBox? myStotyBox =
+        _key.currentContext!.findRenderObject() as RenderBox;
+    final position = myStotyBox!.localToGlobal(Offset.zero);
+    Provider.of<WidgetPositionProvider>(context, listen: false)
+        .update(6, position.dy);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: defaultPadding as double),
+      padding: EdgeInsets.symmetric(
+        vertical: defaultPadding * 2,
+        horizontal: defaultSpace.sp * 3,
+      ),
       width: double.infinity,
-      height: size.height * 0.15,
+      height: widget.size.height * 0.15,
       constraints: BoxConstraints(
-        maxHeight: size.height,
+        maxHeight: widget.size.height,
         maxWidth: double.infinity,
       ),
       decoration: BoxDecoration(
@@ -40,14 +66,16 @@ class ContactComponent extends StatelessWidget {
           Column(
             children: [
               Container(
-                width: size.width * 0.8,
+                width: widget.size.width * 0.8,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TopicNameWidget(
-                      size: size,
+                      size: widget.size,
                       color: thridColor,
-                      topicName: isEnglish ? topic.enTitle : topic.thTitle,
+                      topicName: widget.isEnglish
+                          ? widget.topic.enTitle
+                          : widget.topic.thTitle,
                       differenceStyle: true,
                     ),
                     Container(
@@ -60,8 +88,8 @@ class ContactComponent extends StatelessWidget {
                           Icons.download,
                         ),
                         label: Text(
-                          isEnglish ? 'Download' : 'ดาวน์โหลด',
-                          style: size.width <= widthTarget
+                          widget.isEnglish ? 'Download' : 'ดาวน์โหลด',
+                          style: widget.size.width <= widthTarget
                               ? GoogleFonts.prompt(
                                   textStyle: TextStyle(
                                     fontWeight: FontWeight.w400,
@@ -80,7 +108,7 @@ class ContactComponent extends StatelessWidget {
                 height: 50,
                 width: 200,
                 child: SideBarContactComponent(
-                  size: size,
+                  size: widget.size,
                   axizType: AXIZ_TYPE.ROW,
                 ),
               ),
@@ -93,7 +121,7 @@ class ContactComponent extends StatelessWidget {
 
   doDownloadCV() {
     log('download cv', name: 'CONTACT');
-    html.window.open(back_end_api, "_blank");
+    html.window.open(back_end_api_download, "_blank");
 
     // http.get(Uri.parse(back_end_api));
   }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/my_skill_model.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
+import 'package:taloengrat_cv/providers/widget_position_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/skill_card_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constance.dart';
 
-class MySkillComponent extends StatelessWidget {
+class MySkillComponent extends StatefulWidget {
   final Size size;
   final TopicModel topic;
   final bool isEnglish;
@@ -19,13 +21,37 @@ class MySkillComponent extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _MySkillComponentState createState() => _MySkillComponentState();
+}
+
+class _MySkillComponentState extends State<MySkillComponent> {
+  GlobalKey _key = GlobalKey();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addPostFrameCallback(_getPosition);
+    super.initState();
+  }
+
+  _getPosition(_) {
+    final RenderBox? myStotyBox =
+        _key.currentContext!.findRenderObject() as RenderBox;
+    final position = myStotyBox!.localToGlobal(Offset.zero);
+    Provider.of<WidgetPositionProvider>(context, listen: false)
+        .update(2, position.dy);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxWidth: size.width * 0.8,
+        maxWidth: widget.size.width * 0.8,
       ),
       alignment: Alignment.bottomCenter,
-      margin: EdgeInsets.symmetric(vertical: defaultMargin as double),
+      margin: EdgeInsets.symmetric(
+        vertical: defaultMargin * 2,
+        horizontal: defaultSpace.sp * 3,
+      ),
       child: Wrap(
         alignment: WrapAlignment.center,
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -33,9 +59,11 @@ class MySkillComponent extends StatelessWidget {
           Row(
             children: [
               TopicNameWidget(
-                size: size,
+                size: widget.size,
                 color: primaryColor,
-                topicName: isEnglish ? topic.enTitle : topic.thTitle,
+                topicName: widget.isEnglish
+                    ? widget.topic.enTitle
+                    : widget.topic.thTitle,
               ),
               Expanded(
                 child: Divider(

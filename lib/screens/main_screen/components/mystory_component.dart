@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/about_me_model.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
+import 'package:taloengrat_cv/providers/widget_position_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constance.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyStoryComponent extends StatelessWidget {
+class MyStoryComponent extends StatefulWidget {
   final Size size;
   final TopicModel topic;
   final bool isEnglish;
@@ -18,13 +21,33 @@ class MyStoryComponent extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _MyStoryComponentState createState() => _MyStoryComponentState();
+}
+
+class _MyStoryComponentState extends State<MyStoryComponent> {
+  GlobalKey _key = GlobalKey();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addPostFrameCallback(_getPosition);
+    super.initState();
+  }
+
+  _getPosition(_) {
+    final RenderBox? myStotyBox =
+        _key.currentContext!.findRenderObject() as RenderBox;
+    final position = myStotyBox!.localToGlobal(Offset.zero);
+    Provider.of<WidgetPositionProvider>(context, listen: false)
+        .update(1, position.dy);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        maxWidth: size.width * 0.8,
-      ),
+      width: widget.size.width * 0.8,
       margin: EdgeInsets.symmetric(
         vertical: defaultMargin * 2,
+        horizontal: defaultSpace.sp * 3,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,9 +55,12 @@ class MyStoryComponent extends StatelessWidget {
           Row(
             children: [
               TopicNameWidget(
-                size: size,
+                key: _key,
+                size: widget.size,
                 color: primaryColor,
-                topicName: isEnglish ? topic.enTitle : topic.thTitle,
+                topicName: widget.isEnglish
+                    ? widget.topic.enTitle
+                    : widget.topic.thTitle,
               ),
               Expanded(
                 child: Divider(
@@ -49,13 +75,14 @@ class MyStoryComponent extends StatelessWidget {
             alignment: WrapAlignment.start,
             children: [
               SelectableText(
-                isEnglish
+                widget.isEnglish
                     ? myStoryModel.enDetail as String
                     : myStoryModel.thDetail as String,
                 toolbarOptions: ToolbarOptions(
                   copy: true,
                 ),
-                style: size.width <= widthTarget || size.height <= heightTarget
+                style: widget.size.width <= widthTarget ||
+                        widget.size.height <= heightTarget
                     ? GoogleFonts.prompt(
                         textStyle: TextStyle(
                           fontWeight: FontWeight.w400,

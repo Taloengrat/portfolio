@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/constance.dart';
 import 'package:taloengrat_cv/providers/language_provider.dart';
 import 'package:taloengrat_cv/providers/sidebar_contact_provider.dart';
+import 'package:taloengrat_cv/providers/widget_position_provider.dart';
 import 'screens/main_screen/main_screen.dart';
 
 void main() {
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: SidebarProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: WidgetPositionProvider(),
         ),
       ],
       child: ScreenUtilInit(

@@ -9,8 +9,9 @@ class MenuWidget extends StatefulWidget {
   final int index;
   final String message;
   final Color color;
+  final double position;
   final ScrollController scrollController;
-  final List<double> listTopicPosition;
+  // final List<double> listTopicPosition;
   final Size size;
   const MenuWidget({
     Key? key,
@@ -18,7 +19,8 @@ class MenuWidget extends StatefulWidget {
     required this.color,
     required this.index,
     required this.scrollController,
-    required this.listTopicPosition,
+    required this.position,
+    // required this.listTopicPosition,
     required this.size,
   }) : super(key: key);
 
@@ -28,17 +30,14 @@ class MenuWidget extends StatefulWidget {
 
 class _MenuWidgetState extends State<MenuWidget> {
   _moveTo(int index) {
-    if (widget.listTopicPosition.isEmpty) return;
-
     widget.scrollController.animateTo(
-      widget.listTopicPosition.elementAt(index),
+      widget.position,
       curve: Curves.linear,
       duration: Duration(milliseconds: 500),
     );
   }
 
   _scrollListener() {
-    // log(widget.scrollController.offset.toString(), name: 'scroll value');
     if (widget.scrollController.offset ==
         widget.scrollController.position.maxScrollExtent) {
       Provider.of<SidebarProvider>(context, listen: false)
@@ -54,8 +53,6 @@ class _MenuWidgetState extends State<MenuWidget> {
       Provider.of<SidebarProvider>(context, listen: false)
           .updateReachBottom(true);
     }
-
-    // if(widget.scrollController.offset >)
   }
 
   @override

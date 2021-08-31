@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/education_model.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
+import 'package:taloengrat_cv/providers/widget_position_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/education_tile_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constance.dart';
 
-class EducationComponent extends StatelessWidget {
+class EducationComponent extends StatefulWidget {
   final Size size;
   final TopicModel topic;
   final bool isEnglish;
@@ -19,22 +21,48 @@ class EducationComponent extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _EducationComponentState createState() => _EducationComponentState();
+}
+
+class _EducationComponentState extends State<EducationComponent> {
+  GlobalKey _key = GlobalKey();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addPostFrameCallback(_getPosition);
+    super.initState();
+  }
+
+  _getPosition(_) {
+    final RenderBox? myStotyBox =
+        _key.currentContext!.findRenderObject() as RenderBox;
+    final position = myStotyBox!.localToGlobal(Offset.zero);
+    Provider.of<WidgetPositionProvider>(context, listen: false)
+        .update(4, position.dy);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxHeight: size.height,
-        maxWidth: size.width * 0.8,
+        maxHeight: widget.size.height,
+        maxWidth: widget.size.width * 0.8,
       ),
-      margin: EdgeInsets.symmetric(vertical: defaultMargin * 2),
+      margin: EdgeInsets.symmetric(
+        vertical: defaultMargin * 2,
+        horizontal: defaultSpace.sp * 3,
+      ),
       child: Wrap(
         // alignment: WrapAlignment.center,
         children: [
           Row(
             children: [
               TopicNameWidget(
-                size: size,
+                size: widget.size,
                 color: primaryColor,
-                topicName: isEnglish ? topic.enTitle : topic.thTitle,
+                topicName: widget.isEnglish
+                    ? widget.topic.enTitle
+                    : widget.topic.thTitle,
               ),
               Expanded(
                 child: Divider(
@@ -48,13 +76,15 @@ class EducationComponent extends StatelessWidget {
           Column(
             children: educationModelData
                 .map((e) => EducationTileWidget(
-                      size: size,
+                      size: widget.size,
                       color: e.color,
                       path: e.logoPath,
-                      title: (isEnglish ? e.enUniversity : e.thUniversity) +
-                          ' - ' +
-                          (isEnglish ? e.yearEn : e.yearTh),
-                      subTitle: isEnglish ? e.enDepartment : e.thDepartment,
+                      title:
+                          (widget.isEnglish ? e.enUniversity : e.thUniversity) +
+                              ' - ' +
+                              (widget.isEnglish ? e.yearEn : e.yearTh),
+                      subTitle:
+                          widget.isEnglish ? e.enDepartment : e.thDepartment,
                     ))
                 .toList(),
           ),

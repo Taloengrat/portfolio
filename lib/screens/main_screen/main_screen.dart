@@ -33,14 +33,7 @@ class _MainScreenState extends State<MainScreen> {
   List<double> _listTopicPosition = [];
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback(_afterRender);
     super.initState();
-  }
-
-  @override
-  void didUpdateWidget(covariant MainScreen oldWidget) {
-    WidgetsBinding.instance!.addPostFrameCallback(_afterRender);
-    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -91,14 +84,14 @@ class _MainScreenState extends State<MainScreen> {
     _listTopicPosition.add(position.dy);
   }
 
-  _afterRender(_) {
-    _getMyStoryPosition();
-    _getMySkillPosition();
-    _getActivity();
-    _getEducation();
-    _getOther();
-    _getContact();
-  }
+  // _afterRender(_) {
+  //   _getMyStoryPosition();
+  //   _getMySkillPosition();
+  //   _getActivity();
+  //   _getEducation();
+  //   _getOther();
+  //   _getContact();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -109,61 +102,16 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
-              children: [
-                HeaderComponent(
-                  size: size,
-                  scrollController: _scrollController,
-                  listTopicPosition: _listTopicPosition,
-                ),
-                SizedBox(
-                  height: defaultSpace * 2,
-                ),
-                MyStoryComponent(
-                  key: _keyMyStory,
-                  size: size,
-                  topic: topicList.elementAt(0),
-                  isEnglish: isEnglish,
-                ),
-                MySkillComponent(
-                  key: _keyMySkill,
-                  size: size,
-                  topic: topicList.elementAt(1),
-                  isEnglish: isEnglish,
-                ),
-                ExtracurricularActivitiesComponent(
-                  key: _keyActivities,
-                  size: size,
-                  topic: topicList.elementAt(2),
-                  isEnglish: isEnglish,
-                ),
-                EducationComponent(
-                  key: _keyEducation,
-                  size: size,
-                  topic: topicList.elementAt(3),
-                  isEnglish: isEnglish,
-                ),
-                OtherComponent(
-                  key: _keyOther,
-                  size: size,
-                  topicModel: topicList.elementAt(4),
-                  isEnglish: isEnglish,
-                ),
-                ContactComponent(
-                  key: _keyContact,
-                  size: size,
-                  topic: topicList.elementAt(5),
-                  isEnglish: isEnglish,
-                ),
-              ],
-            ),
+          ListView.builder(
+            itemCount: topicList.length + 1,
+            itemBuilder: (context, index) {
+              return getComponenet(size, index, isEnglish);
+            },
           ),
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              width: 50,
+              width: size.width <= widthTarget ? 30 : 50,
               height: 200,
               child: SideBarContactComponent(
                 size: size,
@@ -174,5 +122,112 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
     );
+  }
+
+  Widget getComponenet(Size size, int index, bool isEnglish) {
+    switch (index) {
+      case 0:
+        return HeaderComponent(
+          size: size,
+          scrollController: _scrollController,
+          // listTopicPosition: _listTopicPosition,
+        );
+      case 1:
+        return MyStoryComponent(
+          key: _keyMyStory,
+          size: size,
+          topic: topicList.elementAt(0),
+          isEnglish: isEnglish,
+        );
+
+      case 2:
+        return MySkillComponent(
+          key: _keyMySkill,
+          size: size,
+          topic: topicList.elementAt(1),
+          isEnglish: isEnglish,
+        );
+
+      case 3:
+        return ExtracurricularActivitiesComponent(
+          key: _keyActivities,
+          size: size,
+          topic: topicList.elementAt(2),
+          isEnglish: isEnglish,
+        );
+
+      case 4:
+        return EducationComponent(
+          key: _keyEducation,
+          size: size,
+          topic: topicList.elementAt(3),
+          isEnglish: isEnglish,
+        );
+
+      case 5:
+        return OtherComponent(
+          key: _keyOther,
+          size: size,
+          topicModel: topicList.elementAt(4),
+          isEnglish: isEnglish,
+        );
+
+      case 6:
+        return ContactComponent(
+          key: _keyContact,
+          size: size,
+          topic: topicList.elementAt(5),
+          isEnglish: isEnglish,
+        );
+
+      default:
+        return Container();
+    }
+    // children: [
+    //   HeaderComponent(
+    //     size: size,
+    //     scrollController: _scrollController,
+    //     listTopicPosition: _listTopicPosition,
+    //   ),
+    //   SizedBox(
+    //     height: defaultSpace * 2,
+    //   ),
+    //   MyStoryComponent(
+    //     key: _keyMyStory,
+    //     size: size,
+    //     topic: topicList.elementAt(0),
+    //     isEnglish: isEnglish,
+    //   ),
+    //   MySkillComponent(
+    //     key: _keyMySkill,
+    //     size: size,
+    //     topic: topicList.elementAt(1),
+    //     isEnglish: isEnglish,
+    //   ),
+    //   ExtracurricularActivitiesComponent(
+    //     key: _keyActivities,
+    //     size: size,
+    //     topic: topicList.elementAt(2),
+    //     isEnglish: isEnglish,
+    //   ),
+    //   EducationComponent(
+    //     key: _keyEducation,
+    //     size: size,
+    //     topic: topicList.elementAt(3),
+    //     isEnglish: isEnglish,
+    //   ),
+    //   OtherComponent(
+    //     key: _keyOther,
+    //     size: size,
+    //     topicModel: topicList.elementAt(4),
+    //     isEnglish: isEnglish,
+    //   ),
+    //   ContactComponent(
+    //     key: _keyContact,
+    //     size: size,
+    //     topic: topicList.elementAt(5),
+    //     isEnglish: isEnglish,
+    //   ),
+    // ],
   }
 }
