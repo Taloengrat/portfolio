@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/sidebar_contact.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
@@ -6,6 +7,7 @@ import 'package:http/http.dart' as http;
 import '../../../constance.dart';
 import 'dart:developer';
 import 'dart:html' as html;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContactComponent extends StatelessWidget {
   final Size size;
@@ -23,7 +25,7 @@ class ContactComponent extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: defaultPadding as double),
       width: double.infinity,
-      // height: size.height * 0,
+      height: size.height * 0.15,
       constraints: BoxConstraints(
         maxHeight: size.height,
         maxWidth: double.infinity,
@@ -48,14 +50,27 @@ class ContactComponent extends StatelessWidget {
                       topicName: isEnglish ? topic.enTitle : topic.thTitle,
                       differenceStyle: true,
                     ),
-                    RaisedButton.icon(
-                      onPressed: doDownloadCV,
-                      icon: Icon(
-                        Icons.download,
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: defaultMargin as double,
                       ),
-                      label: Text(
-                        isEnglish ? 'Download' : 'ดาวน์โหลด',
-                        style: Theme.of(context).textTheme.button,
+                      child: RaisedButton.icon(
+                        onPressed: doDownloadCV,
+                        icon: Icon(
+                          Icons.download,
+                        ),
+                        label: Text(
+                          isEnglish ? 'Download' : 'ดาวน์โหลด',
+                          style: size.width <= widthTarget
+                              ? GoogleFonts.prompt(
+                                  textStyle: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                    fontSize: 32.sp,
+                                  ),
+                                )
+                              : Theme.of(context).textTheme.button,
+                        ),
                       ),
                     ),
                   ],

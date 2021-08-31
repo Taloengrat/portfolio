@@ -26,6 +26,7 @@ const languageList = [
 
 int widthTarget = 800;
 int heightTarget = 740;
+bool enableLanguage = false;
 
 const background_header_image = 'assets/head_background.jpg';
 const profile_picture = 'assets/myself_logo.png';

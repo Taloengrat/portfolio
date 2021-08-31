@@ -2,13 +2,14 @@ import 'dart:ui';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/header_model.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
 import 'package:taloengrat_cv/providers/language_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/header_menu_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/language_switch_widget.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constance.dart';
 
 class HeaderComponent extends StatefulWidget {
@@ -29,6 +30,73 @@ class HeaderComponent extends StatefulWidget {
 
 class _HeaderComponentState extends State<HeaderComponent> {
   bool isFinished = false;
+
+  List<Widget> getMenuList(
+    bool isEnglish,
+  ) {
+    return [
+      MenuWidget(
+        message: isEnglish
+            ? topicList.elementAt(0).enTitle
+            : topicList.elementAt(0).thTitle,
+        color: primaryColor,
+        index: 0,
+        scrollController: widget.scrollController,
+        listTopicPosition: widget.listTopicPosition,
+        size: widget.size,
+      ),
+      MenuWidget(
+        message: isEnglish
+            ? topicList.elementAt(1).enTitle
+            : topicList.elementAt(1).thTitle,
+        color: secondColor,
+        index: 1,
+        scrollController: widget.scrollController,
+        listTopicPosition: widget.listTopicPosition,
+        size: widget.size,
+      ),
+      MenuWidget(
+        message: isEnglish
+            ? topicList.elementAt(2).enTitle
+            : topicList.elementAt(2).thTitle,
+        color: thridColor,
+        index: 2,
+        scrollController: widget.scrollController,
+        listTopicPosition: widget.listTopicPosition,
+        size: widget.size,
+      ),
+      MenuWidget(
+        message: isEnglish
+            ? topicList.elementAt(3).enTitle
+            : topicList.elementAt(3).thTitle,
+        color: fourthColor,
+        index: 3,
+        scrollController: widget.scrollController,
+        listTopicPosition: widget.listTopicPosition,
+        size: widget.size,
+      ),
+      MenuWidget(
+        message: isEnglish
+            ? topicList.elementAt(4).enTitle
+            : topicList.elementAt(4).thTitle,
+        color: fifthColor,
+        index: 4,
+        scrollController: widget.scrollController,
+        listTopicPosition: widget.listTopicPosition,
+        size: widget.size,
+      ),
+      MenuWidget(
+        message: isEnglish
+            ? topicList.elementAt(5).enTitle
+            : topicList.elementAt(5).thTitle,
+        color: sixthColor,
+        index: 5,
+        scrollController: widget.scrollController,
+        listTopicPosition: widget.listTopicPosition,
+        size: widget.size,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,15 +163,29 @@ class _HeaderComponentState extends State<HeaderComponent> {
                                       ? headerModel.enName
                                       : headerModel.thName,
                                   // speed: Duration(milliseconds: 150),
-                                  textStyle:
-                                      Theme.of(context).textTheme.headline3,
+                                  textStyle: widget.size.width <= widthTarget
+                                      ? GoogleFonts.prompt(
+                                          textStyle: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.amber,
+                                            fontSize: 40.sp,
+                                          ),
+                                        )
+                                      : Theme.of(context).textTheme.headline3,
                                 ),
                                 TyperAnimatedText(
                                     isEnglish
                                         ? headerModel.enPosition
                                         : headerModel.thPosition,
-                                    textStyle:
-                                        Theme.of(context).textTheme.subtitle1,
+                                    textStyle: widget.size.width <= widthTarget
+                                        ? GoogleFonts.prompt(
+                                            textStyle: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.white70,
+                                              fontSize: 22.sp,
+                                            ),
+                                          )
+                                        : Theme.of(context).textTheme.subtitle1,
                                     // speed: Duration(milliseconds: 100),
                                     curve: Curves.easeInCubic),
                               ],
@@ -115,16 +197,30 @@ class _HeaderComponentState extends State<HeaderComponent> {
                                     text: isEnglish
                                         ? headerModel.enName
                                         : headerModel.thName,
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
+                                    style: widget.size.width <= widthTarget
+                                        ? GoogleFonts.prompt(
+                                            textStyle: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.amber,
+                                              fontSize: 40.sp,
+                                            ),
+                                          )
+                                        : Theme.of(context).textTheme.headline3,
                                   ),
                                   TextSpan(
-                                      text: isEnglish
-                                          ? headerModel.enPosition
-                                          : headerModel.thPosition,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle1),
+                                    text: isEnglish
+                                        ? headerModel.enPosition
+                                        : headerModel.thPosition,
+                                    style: widget.size.width <= widthTarget
+                                        ? GoogleFonts.prompt(
+                                            textStyle: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.white70,
+                                              fontSize: 22.sp,
+                                            ),
+                                          )
+                                        : Theme.of(context).textTheme.subtitle1,
+                                  ),
                                 ],
                               ),
                             ),
@@ -141,6 +237,9 @@ class _HeaderComponentState extends State<HeaderComponent> {
               width: widget.size.width *
                   (widget.size.width <= widthTarget ? 0.9 : 0.6),
               height: 70,
+              padding: EdgeInsets.symmetric(
+                horizontal: defaultPadding * 2 as double,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: Colors.white,
@@ -152,81 +251,25 @@ class _HeaderComponentState extends State<HeaderComponent> {
                   ),
                 ],
               ),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                reverse: true,
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MenuWidget(
-                      message: isEnglish
-                          ? topicList.elementAt(0).enTitle
-                          : topicList.elementAt(0).thTitle,
-                      color: primaryColor,
-                      index: 0,
-                      scrollController: widget.scrollController,
-                      listTopicPosition: widget.listTopicPosition,
-                      size: widget.size,
-                    ),
-                    MenuWidget(
-                      message: isEnglish
-                          ? topicList.elementAt(1).enTitle
-                          : topicList.elementAt(1).thTitle,
-                      color: secondColor,
-                      index: 1,
-                      scrollController: widget.scrollController,
-                      listTopicPosition: widget.listTopicPosition,
-                      size: widget.size,
-                    ),
-                    MenuWidget(
-                      message: isEnglish
-                          ? topicList.elementAt(2).enTitle
-                          : topicList.elementAt(2).thTitle,
-                      color: thridColor,
-                      index: 2,
-                      scrollController: widget.scrollController,
-                      listTopicPosition: widget.listTopicPosition,
-                      size: widget.size,
-                    ),
-                    MenuWidget(
-                      message: isEnglish
-                          ? topicList.elementAt(3).enTitle
-                          : topicList.elementAt(3).thTitle,
-                      color: fourthColor,
-                      index: 3,
-                      scrollController: widget.scrollController,
-                      listTopicPosition: widget.listTopicPosition,
-                      size: widget.size,
-                    ),
-                    MenuWidget(
-                      message: isEnglish
-                          ? topicList.elementAt(4).enTitle
-                          : topicList.elementAt(4).thTitle,
-                      color: fifthColor,
-                      index: 4,
-                      scrollController: widget.scrollController,
-                      listTopicPosition: widget.listTopicPosition,
-                      size: widget.size,
-                    ),
-                    MenuWidget(
-                      message: isEnglish
-                          ? topicList.elementAt(5).enTitle
-                          : topicList.elementAt(5).thTitle,
-                      color: sixthColor,
-                      index: 5,
-                      scrollController: widget.scrollController,
-                      listTopicPosition: widget.listTopicPosition,
-                      size: widget.size,
-                    ),
-                  ],
+              child: Scrollbar(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  physics: ScrollPhysics(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: getMenuList(isEnglish),
+                  ),
                 ),
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topRight,
-            child: LanguageSwitchWidget(),
+          Visibility(
+            visible: enableLanguage,
+            child: Align(
+              alignment: Alignment.topRight,
+              child: LanguageSwitchWidget(),
+            ),
           ),
         ],
       ),

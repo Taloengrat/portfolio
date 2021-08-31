@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/icon_navigate_model.dart';
 import 'package:taloengrat_cv/providers/sidebar_contact_provider.dart';
-import 'package:taloengrat_cv/screens/main_screen/widgets/icon_newtab_widget.dart';
+import 'package:taloengrat_cv/screens/main_screen/widgets/icon_navigate_widget.dart';
 
 class SideBarContactComponent extends StatelessWidget {
   final AXIZ_TYPE axizType;
