@@ -7,7 +7,6 @@ import 'package:taloengrat_cv/providers/widget_position_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constance.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyStoryComponent extends StatefulWidget {
   final Size size;
@@ -25,29 +24,25 @@ class MyStoryComponent extends StatefulWidget {
 }
 
 class _MyStoryComponentState extends State<MyStoryComponent> {
-  GlobalKey _key = GlobalKey();
-
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback(_getPosition);
+    // TODO: implement initState
     super.initState();
-  }
-
-  _getPosition(_) {
-    final RenderBox? myStotyBox =
-        _key.currentContext!.findRenderObject() as RenderBox;
-    final position = myStotyBox!.localToGlobal(Offset.zero);
-    Provider.of<WidgetPositionProvider>(context, listen: false)
-        .update(1, position.dy);
   }
 
   @override
   Widget build(BuildContext context) {
+    // setState(() {
+    //   Provider.of<WidgetPositionProvider>(context, listen: false)
+    //       .update('top', true);
+    // });
+
     return Container(
       width: widget.size.width * 0.8,
-      margin: EdgeInsets.symmetric(
-        vertical: defaultMargin * 2,
-        horizontal: defaultSpace.sp * 3,
+      margin: EdgeInsets.only(
+        bottom: defaultMargin * 2,
+        left: defaultSpace.sp * 3,
+        right: defaultSpace.sp * 3,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +50,7 @@ class _MyStoryComponentState extends State<MyStoryComponent> {
           Row(
             children: [
               TopicNameWidget(
-                key: _key,
+                // key: _key,
                 size: widget.size,
                 color: primaryColor,
                 topicName: widget.isEnglish
@@ -85,8 +80,6 @@ class _MyStoryComponentState extends State<MyStoryComponent> {
                         widget.size.height <= heightTarget
                     ? GoogleFonts.prompt(
                         textStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.blueGrey,
                           fontSize: 45.sp,
                         ),
                       )

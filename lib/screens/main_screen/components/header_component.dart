@@ -1,28 +1,22 @@
 import 'dart:ui';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/header_model.dart';
-import 'package:taloengrat_cv/models/topic_model.dart';
 import 'package:taloengrat_cv/providers/language_provider.dart';
-import 'package:taloengrat_cv/providers/widget_position_provider.dart';
-import 'package:taloengrat_cv/screens/main_screen/widgets/header_menu_widget.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/language_switch_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constance.dart';
 
 class HeaderComponent extends StatefulWidget {
-  final ScrollController scrollController;
+  // final ScrollController scrollController;
   final Size size;
-  // final List<double> listTopicPosition;
 
   HeaderComponent({
     Key? key,
     required this.size,
-    required this.scrollController,
-    // required this.listTopicPosition,
+    // required this.scrollController,
   }) : super(key: key);
 
   @override
@@ -34,9 +28,10 @@ class _HeaderComponentState extends State<HeaderComponent> {
 
   @override
   Widget build(BuildContext context) {
-    final position = Provider.of<WidgetPositionProvider>(context).item;
+    // final position = Provider.of<WidgetPositionProvider>(context).item;
     final language = Provider.of<LanguageProvider>(context).item;
     final bool isEnglish = language == 'English';
+
     return Container(
       width: widget.size.width,
       height:
@@ -85,7 +80,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                                 widget.size.width <= widthTarget
                             ? 70
                             : 200,
-                        maxWidth: widget.size.width <= widthTarget ? 100 : 400,
+                        maxWidth: widget.size.width <= widthTarget ? 130 : 400,
                       ),
                       child: !isFinished
                           ? AnimatedTextKit(
@@ -168,104 +163,116 @@ class _HeaderComponentState extends State<HeaderComponent> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              alignment: Alignment.center,
-              width: widget.size.width *
-                  (widget.size.width <= widthTarget ? 0.9 : 0.6),
-              height: 70,
-              padding: EdgeInsets.symmetric(
-                horizontal: defaultPadding * 2 as double,
-              ),
+              width: widget.size.width,
+              height: 50,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(32),
                 color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    offset: Offset(0.0, 1.0),
-                    blurRadius: 6.0,
-                  ),
-                ],
-              ),
-              child: Scrollbar(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: ScrollPhysics(),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MenuWidget(
-                        message: isEnglish
-                            ? topicList.elementAt(0).enTitle
-                            : topicList.elementAt(0).thTitle,
-                        color: primaryColor,
-                        index: 0,
-                        scrollController: widget.scrollController,
-                        // listTopicPosition: widget.listTopicPosition,
-                        size: widget.size,
-                        position: position[1],
-                      ),
-                      MenuWidget(
-                        message: isEnglish
-                            ? topicList.elementAt(1).enTitle
-                            : topicList.elementAt(1).thTitle,
-                        color: secondColor,
-                        index: 1,
-                        scrollController: widget.scrollController,
-                        // listTopicPosition: widget.listTopicPosition,
-                        size: widget.size,
-                        position: position[2],
-                      ),
-                      MenuWidget(
-                        message: isEnglish
-                            ? topicList.elementAt(2).enTitle
-                            : topicList.elementAt(2).thTitle,
-                        color: thridColor,
-                        index: 2,
-                        scrollController: widget.scrollController,
-                        // listTopicPosition: widget.listTopicPosition,
-                        size: widget.size,
-                        position: position[3],
-                      ),
-                      MenuWidget(
-                        message: isEnglish
-                            ? topicList.elementAt(3).enTitle
-                            : topicList.elementAt(3).thTitle,
-                        color: fourthColor,
-                        index: 3,
-                        scrollController: widget.scrollController,
-                        // listTopicPosition: widget.listTopicPosition,
-                        size: widget.size,
-                        position: position[4],
-                      ),
-                      MenuWidget(
-                        message: isEnglish
-                            ? topicList.elementAt(4).enTitle
-                            : topicList.elementAt(4).thTitle,
-                        color: fifthColor,
-                        index: 4,
-                        scrollController: widget.scrollController,
-                        // listTopicPosition: widget.listTopicPosition,
-                        size: widget.size,
-                        position: position[5],
-                      ),
-                      MenuWidget(
-                        message: isEnglish
-                            ? topicList.elementAt(5).enTitle
-                            : topicList.elementAt(5).thTitle,
-                        color: sixthColor,
-                        index: 5,
-                        scrollController: widget.scrollController,
-                        // listTopicPosition: widget.listTopicPosition,
-                        size: widget.size,
-                        position: position[6],
-                      ),
-                    ],
-                  ),
-                ),
               ),
             ),
           ),
+          // Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: Container(
+          //     alignment: Alignment.center,
+          //     width: widget.size.width *
+          //         (widget.size.width <= widthTarget ? 0.9 : 0.6),
+          //     height: 70,
+          //     padding: EdgeInsets.symmetric(
+          //       horizontal: defaultPadding * 2 as double,
+          //     ),
+          //     decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(8),
+          //       color: Colors.white,
+          //       boxShadow: [
+          //         BoxShadow(
+          //           color: Colors.grey,
+          //           offset: Offset(0.0, 1.0),
+          //           blurRadius: 6.0,
+          //         ),
+          //       ],
+          //     ),
+          //     child: Scrollbar(
+          //       child: SingleChildScrollView(
+          //         scrollDirection: Axis.horizontal,
+          //         physics: ScrollPhysics(),
+          //         child: Row(
+          //           mainAxisSize: MainAxisSize.max,
+          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             MenuWidget(
+          //               message: isEnglish
+          //                   ? topicList.elementAt(0).enTitle
+          //                   : topicList.elementAt(0).thTitle,
+          //               color: primaryColor,
+          //               index: 0,
+          //               scrollController: widget.scrollController,
+          //               // listTopicPosition: widget.listTopicPosition,
+          //               size: widget.size,
+          //               position: position[1],
+          //             ),
+          //             MenuWidget(
+          //               message: isEnglish
+          //                   ? topicList.elementAt(1).enTitle
+          //                   : topicList.elementAt(1).thTitle,
+          //               color: secondColor,
+          //               index: 1,
+          //               scrollController: widget.scrollController,
+          //               // listTopicPosition: widget.listTopicPosition,
+          //               size: widget.size,
+          //               position: position[2],
+          //             ),
+          //             MenuWidget(
+          //               message: isEnglish
+          //                   ? topicList.elementAt(2).enTitle
+          //                   : topicList.elementAt(2).thTitle,
+          //               color: thridColor,
+          //               index: 2,
+          //               scrollController: widget.scrollController,
+          //               // listTopicPosition: widget.listTopicPosition,
+          //               size: widget.size,
+          //               position: position[3],
+          //             ),
+          //             MenuWidget(
+          //               message: isEnglish
+          //                   ? topicList.elementAt(3).enTitle
+          //                   : topicList.elementAt(3).thTitle,
+          //               color: fourthColor,
+          //               index: 3,
+          //               scrollController: widget.scrollController,
+          //               // listTopicPosition: widget.listTopicPosition,
+          //               size: widget.size,
+          //               position: position[4],
+          //             ),
+          //             MenuWidget(
+          //               message: isEnglish
+          //                   ? topicList.elementAt(4).enTitle
+          //                   : topicList.elementAt(4).thTitle,
+          //               color: fifthColor,
+          //               index: 4,
+          //               scrollController: widget.scrollController,
+          //               // listTopicPosition: widget.listTopicPosition,
+          //               size: widget.size,
+          //               position: position[5],
+          //             ),
+          //             MenuWidget(
+          //               message: isEnglish
+          //                   ? topicList.elementAt(5).enTitle
+          //                   : topicList.elementAt(5).thTitle,
+          //               color: sixthColor,
+          //               index: 5,
+          //               scrollController: widget.scrollController,
+          //               // listTopicPosition: widget.listTopicPosition,
+          //               size: widget.size,
+          //               position: position[6],
+          //             ),
+          //           ],
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+
           Visibility(
             visible: enableLanguage,
             child: Align(

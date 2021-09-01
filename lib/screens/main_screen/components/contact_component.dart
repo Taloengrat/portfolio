@@ -27,21 +27,21 @@ class ContactComponent extends StatefulWidget {
 }
 
 class _ContactComponentState extends State<ContactComponent> {
-  GlobalKey _key = GlobalKey();
+  // GlobalKey _key = GlobalKey();
 
-  @override
-  void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback(_getPosition);
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   WidgetsBinding.instance!.addPostFrameCallback(_getPosition);
+  //   super.initState();
+  // }
 
-  _getPosition(_) {
-    final RenderBox? myStotyBox =
-        _key.currentContext!.findRenderObject() as RenderBox;
-    final position = myStotyBox!.localToGlobal(Offset.zero);
-    Provider.of<WidgetPositionProvider>(context, listen: false)
-        .update(6, position.dy);
-  }
+  // _getPosition(_) {
+  //   final RenderBox? myStotyBox =
+  //       _key.currentContext!.findRenderObject() as RenderBox;
+  //   final position = myStotyBox!.localToGlobal(Offset.zero);
+  //   Provider.of<WidgetPositionProvider>(context, listen: false)
+  //       .update(6, position.dy);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +71,7 @@ class _ContactComponentState extends State<ContactComponent> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TopicNameWidget(
+                      // key: _key,
                       size: widget.size,
                       color: thridColor,
                       topicName: widget.isEnglish

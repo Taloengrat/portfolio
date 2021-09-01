@@ -76,6 +76,7 @@ class MyApp extends StatelessWidget {
                 textStyle: TextStyle(
                   fontWeight: FontWeight.normal,
                   color: Colors.black87,
+                  // fontSize:
                 ),
               ),
               bodyText2: GoogleFonts.prompt(

@@ -22,15 +22,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  ScrollController _scrollController = ScrollController();
-  GlobalKey _keyMyStory = GlobalKey();
-  GlobalKey _keyMySkill = GlobalKey();
-  GlobalKey _keyActivities = GlobalKey();
-  GlobalKey _keyEducation = GlobalKey();
-  GlobalKey _keyContact = GlobalKey();
-  GlobalKey _keyOther = GlobalKey();
+  // ScrollController _scrollController = ScrollController();
 
-  List<double> _listTopicPosition = [];
+  // List<double> _listTopicPosition = [];
   @override
   void initState() {
     super.initState();
@@ -38,51 +32,51 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    // _scrollController.dispose();
     super.dispose();
   }
 
-  _getMyStoryPosition() {
-    final RenderBox? myStotyBox =
-        _keyMyStory.currentContext!.findRenderObject() as RenderBox;
-    final position = myStotyBox!.localToGlobal(Offset.zero);
-    _listTopicPosition.add(position.dy);
-  }
+  // _getMyStoryPosition() {
+  //   final RenderBox? myStotyBox =
+  //       _keyMyStory.currentContext!.findRenderObject() as RenderBox;
+  //   final position = myStotyBox!.localToGlobal(Offset.zero);
+  //   _listTopicPosition.add(position.dy);
+  // }
 
-  _getMySkillPosition() {
-    final RenderBox? mySkillBox =
-        _keyMySkill.currentContext!.findRenderObject() as RenderBox;
-    final position = mySkillBox!.localToGlobal(Offset.zero);
-    _listTopicPosition.add(position.dy);
-  }
+  // _getMySkillPosition() {
+  //   final RenderBox? mySkillBox =
+  //       _keyMySkill.currentContext!.findRenderObject() as RenderBox;
+  //   final position = mySkillBox!.localToGlobal(Offset.zero);
+  //   _listTopicPosition.add(position.dy);
+  // }
 
-  _getActivity() {
-    final RenderBox? activityBox =
-        _keyActivities.currentContext!.findRenderObject() as RenderBox;
-    final position = activityBox!.localToGlobal(Offset.zero);
-    _listTopicPosition.add(position.dy);
-  }
+  // _getActivity() {
+  //   final RenderBox? activityBox =
+  //       _keyActivities.currentContext!.findRenderObject() as RenderBox;
+  //   final position = activityBox!.localToGlobal(Offset.zero);
+  //   _listTopicPosition.add(position.dy);
+  // }
 
-  _getEducation() {
-    final RenderBox? activityBox =
-        _keyEducation.currentContext!.findRenderObject() as RenderBox;
-    final position = activityBox!.localToGlobal(Offset.zero);
-    _listTopicPosition.add(position.dy);
-  }
+  // _getEducation() {
+  //   final RenderBox? activityBox =
+  //       _keyEducation.currentContext!.findRenderObject() as RenderBox;
+  //   final position = activityBox!.localToGlobal(Offset.zero);
+  //   _listTopicPosition.add(position.dy);
+  // }
 
-  _getOther() {
-    final RenderBox? otherBox =
-        _keyOther.currentContext!.findRenderObject() as RenderBox;
-    final position = otherBox!.localToGlobal(Offset.zero);
-    _listTopicPosition.add(position.dy);
-  }
+  // _getOther() {
+  //   final RenderBox? otherBox =
+  //       _keyOther.currentContext!.findRenderObject() as RenderBox;
+  //   final position = otherBox!.localToGlobal(Offset.zero);
+  //   _listTopicPosition.add(position.dy);
+  // }
 
-  _getContact() {
-    final RenderBox? activityBox =
-        _keyContact.currentContext!.findRenderObject() as RenderBox;
-    final position = activityBox!.localToGlobal(Offset.zero);
-    _listTopicPosition.add(position.dy);
-  }
+  // _getContact() {
+  //   final RenderBox? activityBox =
+  //       _keyContact.currentContext!.findRenderObject() as RenderBox;
+  //   final position = activityBox!.localToGlobal(Offset.zero);
+  //   _listTopicPosition.add(position.dy);
+  // }
 
   // _afterRender(_) {
   //   _getMyStoryPosition();
@@ -103,19 +97,23 @@ class _MainScreenState extends State<MainScreen> {
       body: Stack(
         children: [
           ListView.builder(
+            shrinkWrap: true,
             itemCount: topicList.length + 1,
             itemBuilder: (context, index) {
               return getComponenet(size, index, isEnglish);
             },
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              width: size.width <= widthTarget ? 30 : 50,
-              height: 200,
-              child: SideBarContactComponent(
-                size: size,
-                axizType: AXIZ_TYPE.COLUMN,
+          Visibility(
+            visible: false,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                width: size.width <= widthTarget ? 30 : 50,
+                height: 200,
+                child: SideBarContactComponent(
+                  size: size,
+                  axizType: AXIZ_TYPE.COLUMN,
+                ),
               ),
             ),
           ),
@@ -129,12 +127,12 @@ class _MainScreenState extends State<MainScreen> {
       case 0:
         return HeaderComponent(
           size: size,
-          scrollController: _scrollController,
+          // scrollController: _scrollController,
           // listTopicPosition: _listTopicPosition,
         );
       case 1:
         return MyStoryComponent(
-          key: _keyMyStory,
+          // key: _keyMyStory,
           size: size,
           topic: topicList.elementAt(0),
           isEnglish: isEnglish,
@@ -142,7 +140,7 @@ class _MainScreenState extends State<MainScreen> {
 
       case 2:
         return MySkillComponent(
-          key: _keyMySkill,
+          // key: _keyMySkill,
           size: size,
           topic: topicList.elementAt(1),
           isEnglish: isEnglish,
@@ -150,7 +148,7 @@ class _MainScreenState extends State<MainScreen> {
 
       case 3:
         return ExtracurricularActivitiesComponent(
-          key: _keyActivities,
+          // key: _keyActivities,
           size: size,
           topic: topicList.elementAt(2),
           isEnglish: isEnglish,
@@ -158,7 +156,7 @@ class _MainScreenState extends State<MainScreen> {
 
       case 4:
         return EducationComponent(
-          key: _keyEducation,
+          // key: _keyEducation,
           size: size,
           topic: topicList.elementAt(3),
           isEnglish: isEnglish,
@@ -166,7 +164,7 @@ class _MainScreenState extends State<MainScreen> {
 
       case 5:
         return OtherComponent(
-          key: _keyOther,
+          // key: _keyOther,
           size: size,
           topicModel: topicList.elementAt(4),
           isEnglish: isEnglish,
@@ -174,7 +172,7 @@ class _MainScreenState extends State<MainScreen> {
 
       case 6:
         return ContactComponent(
-          key: _keyContact,
+          // key: _keyContact,
           size: size,
           topic: topicList.elementAt(5),
           isEnglish: isEnglish,

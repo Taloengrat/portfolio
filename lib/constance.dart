@@ -30,5 +30,5 @@ bool enableLanguage = false;
 
 const background_header_image = 'assets/head_background.jpg';
 const profile_picture = 'assets/myself_logo.png';
-const back_end_api_download = 'http://localhost:8080/download-cv';
-const back_end_api_show = 'http://localhost:8080/show-cv';
+const back_end_api_download = 'http://34.101.165.1/download-cv';
+const back_end_api_show = 'http://34.101.165.1/show-cv';

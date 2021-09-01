@@ -26,21 +26,21 @@ class ExtracurricularActivitiesComponent extends StatefulWidget {
 
 class _ExtracurricularActivitiesComponentState
     extends State<ExtracurricularActivitiesComponent> {
-  GlobalKey _key = GlobalKey();
+  // GlobalKey _key = GlobalKey();
 
-  @override
-  void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback(_getPosition);
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   WidgetsBinding.instance!.addPostFrameCallback(_getPosition);
+  //   super.initState();
+  // }
 
-  _getPosition(_) {
-    final RenderBox? myStotyBox =
-        _key.currentContext!.findRenderObject() as RenderBox;
-    final position = myStotyBox!.localToGlobal(Offset.zero);
-    Provider.of<WidgetPositionProvider>(context, listen: false)
-        .update(3, position.dy);
-  }
+  // _getPosition(_) {
+  //   final RenderBox? myStotyBox =
+  //       _key.currentContext!.findRenderObject() as RenderBox;
+  //   final position = myStotyBox!.localToGlobal(Offset.zero);
+  //   Provider.of<WidgetPositionProvider>(context, listen: false)
+  //       .update(3, position.dy);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +56,7 @@ class _ExtracurricularActivitiesComponentState
           Row(
             children: [
               TopicNameWidget(
+                // key: _key,
                 size: widget.size,
                 color: primaryColor,
                 topicName: widget.isEnglish
