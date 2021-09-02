@@ -112,7 +112,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                                             textStyle: TextStyle(
                                               fontWeight: FontWeight.normal,
                                               color: Colors.white70,
-                                              fontSize: 22.sp,
+                                              fontSize: 30.sp,
                                             ),
                                           )
                                         : Theme.of(context).textTheme.subtitle1,
@@ -146,7 +146,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
                                             textStyle: TextStyle(
                                               fontWeight: FontWeight.normal,
                                               color: Colors.white70,
-                                              fontSize: 22.sp,
+                                              fontSize: 30.sp,
                                             ),
                                           )
                                         : Theme.of(context).textTheme.subtitle1,
@@ -164,7 +164,7 @@ class _HeaderComponentState extends State<HeaderComponent> {
             alignment: Alignment.bottomCenter,
             child: Container(
               width: widget.size.width,
-              height: 50,
+              height: 30,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
                 color: Colors.white,

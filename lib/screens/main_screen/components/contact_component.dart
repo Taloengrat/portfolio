@@ -122,8 +122,8 @@ class _ContactComponentState extends State<ContactComponent> {
 
   doDownloadCV() {
     log('download cv', name: 'CONTACT');
-    html.window.open(back_end_api_download, "_blank");
+    html.window.open(back_end_api_show, "_blank");
 
-    // http.get(Uri.parse(back_end_api));
+    // http.get(Uri.parse(back_end_api_download));
   }
 }
