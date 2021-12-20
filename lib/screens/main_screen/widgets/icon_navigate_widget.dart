@@ -70,7 +70,7 @@ class IconNavigate extends StatelessWidget {
                       ? BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
-                              'line_qrcode.jpg',
+                              'assets/line_qrcode.jpg',
                             ),
                           ),
                         )

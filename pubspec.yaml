@@ -50,30 +50,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/head_background.jpg
-    - assets/myself_logo.png
-    - assets/line_qrcode.jpg
-    - assets/images/language/android_studio.png
-    - assets/images/language/dart.png
-    - assets/images/language/java.png
-    - assets/images/language/flutter.png
-    - assets/images/language/jenkins.png
-    - assets/images/language/spring.png
-    - assets/images/language/type_script.png
-    - assets/images/language/unity.jpg
-    - assets/images/language/docker.png
-    - assets/images/language/kubernetes.png
-    - assets/images/email_b.png
-    - assets/images/email_w.png
-    - assets/images/github_b.png
-    - assets/images/github_w.png
-    - assets/images/line-logo_b.png
-    - assets/images/line-logo_w.png
-    - assets/images/linkedin_b.png
-    - assets/images/linkedin_w.png
-    - assets/images/phone-call-w.png
-    - assets/images/youtube_b.png
-    - assets/images/youtube_w.png
+    - assets/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

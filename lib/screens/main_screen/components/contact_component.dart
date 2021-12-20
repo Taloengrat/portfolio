@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:taloengrat_cv/models/topic_model.dart';
-import 'package:taloengrat_cv/providers/widget_position_provider.dart';
 import 'package:taloengrat_cv/screens/main_screen/components/sidebar_contact.dart';
 import 'package:taloengrat_cv/screens/main_screen/widgets/topic_name_widget.dart';
-import 'package:http/http.dart' as http;
 import '../../../constance.dart';
 import 'dart:developer';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
